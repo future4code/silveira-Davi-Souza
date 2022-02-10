@@ -1,0 +1,8 @@
+str main(){
+    str agradecimento = Obrigado pela atenção
+    
+    Meu nome Davi, nasci em Porto Alegre e morei a maior parte da minha vida na cidade vizinha.
+    Gosto muito de assistir series e filmes, jogar, ouvir música e afins. Sou apaixonado pela técnologia e estou em busca de tornar um excelente programador.
+
+    return agradecimento
+}
