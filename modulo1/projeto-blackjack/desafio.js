@@ -11,60 +11,72 @@
  * 
  */
 
-let jogador = [comprarCarta(),comprarCarta()];
-let computador = [comprarCarta(),comprarCarta()];
+let jogador = [comprarCarta(),comprarCarta()];;
+let computador = [comprarCarta(),comprarCarta()];;
 let pontos = [jogador[0].valor + jogador[1].valor, computador[0].valor + computador[1].valor];
-let frase = `Suas cartas são ${jogador[0].texto} ${jogador[1].texto} `
+let frase = `${jogador[0].texto} ${jogador[1].texto}`;
+let confirma;
+let start;
 
-let comprarMais = () => confirm(`${frase}. A carta revelada do computador é ${computador[0].texto}.\nDeseja comprar mais uma carta?`);
+let comprarMais = () => confirm(
+   `Suas cartas são ${frase}. A carta revelada do computador é ${computador[0].texto}.
+   \nDeseja comprar mais uma carta?`);
 
-function adicionar(){
-   for(let i = 1; i < jogador.length; i++){
-         if(pontos[0] > 21){
-            return;
-         }
-         jogador.push(comprarCarta());
-         frase = frase + jogador[jogador.length - 1].texto;
-         pontos[0] = pontos[0] + jogador[jogador.length - 1].valor;
-      }
+function adicionar(arr){
+   if(pontos[0] >= 21){
+      return;
+   }
+   arr.push(comprarCarta());
+   frase = frase + ` ${arr[arr.length - 1].texto}`;
+   pontos[0] = pontos[0] + arr[arr.length - 1].valor;
+   return;
+}
+
+function compara(arr){
+   if(arr[0].texto.indexOf("A") === "A" && arr[1].texto.indexOf("A") === "A") 
+      return arr = [comprarCarta(),comprarCarta()];
+   return
+}
+
+function resultado(array){
+   if(array[0] > array[1] && array[0] < 22){
+      return alert("Você venceu!!!");
+   }
+   else if(array[0] < array[1]){
+      return alert("Computador venceu!!!");
+   }
+   else if(array[0] > 21){
+      return alert("Computador venceu!!!");
+   }
+   else{
+      return alert("Empate.");
+   }
 }
 
 alert("Boas vindas ao jogo de Blackjack!");
-    
-if(confirm("Deseja iniciar o Jogo?\nSim = Ok\nNão = Cancelar")){
-   if(computador[0].texto === "A" && computador[1].texto === "A") computador = [comprarCarta(),comprarCarta()];
-   if(jogador[0].texto === "A" && jogador[1].texto === "A") jogador = [comprarCarta(),comprarCarta()];
 
-   comprarMais()
+if(confirm("Deseja iniciar o jogo?\nSim = Ok\nNão = Cancelar")){
+   compara(jogador);
+   compara(computador);
+   
+   confirma = comprarMais();
 
    do{
-      if(pontos[0] < 21 ){
-         adicionar();
+      if(pontos[0] < 21 && confirma){
+         adicionar(jogador);
       }
       else{
          break;
       }
-   } while(comprarMais().valueOf() !== false);
+   } while(comprarMais());
+
+   alert(`${frase}. A carta revelada do computador é ${computador[0].texto}.`);
    
-   if(pontos[0] > pontos[1] && pontos[0] < 22){
-      console.log(`Cartas Computador: ${computador[0].texto} ${computador[1].texto} `)
-      console.log(`Pontos Jogador: ${pontos[0]}\nPontos Computador: ${pontos[1]}`);
-      alert("Jogador venceu!!!");
-   }
-   else if(pontos[0] < pontos[1]){
-      console.log(`Cartas Computador: ${computador[0].texto} ${computador[1].texto} `)
-      console.log(`Pontos Jogador: ${pontos[0]}\nPontos Computador: ${pontos[1]}`);
-      alert("Computador venceu!!!");
-   }
-   else if(pontos[0] > 21){
-      console.log(`Cartas Computador: ${computador[0].texto} ${computador[1].texto} `)
-      console.log(`Pontos Jogador: ${pontos[0]}\nPontos Computador: ${pontos[1]}`);
-      alert("Computador venceu!!!");
-   }
-   else{
-      alert("Empate.");
-   }
+   resultado(pontos);
+   console.log(`Cartas Jogador: ${frase}`);
+   console.log(`Pontos Computador: ${computador[0].valor} + ${computador[1].valor}`);
+   console.log(`Cartas Computador: ${computador[0].texto} ${computador[1].texto} `);
+   console.log(`Pontos Jogador: ${pontos[0]}\nPontos Computador: ${pontos[1]}`);
 }
-else {
-   alert("O jogo acabou.");
-}
+
+alert("O jogo acabou. \nRecarregue a página para recomeçar!");
