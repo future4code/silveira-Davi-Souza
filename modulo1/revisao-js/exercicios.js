@@ -175,7 +175,7 @@ function retornaArrayOrdenadoAlfabeticamente(consultas) {
 function retornaArrayOrdenadoPorData(consultas) {
    function data(data){
        let item = data.split('/');
-       let atualizada = new Date (item[2], item[1], item[0]);
+       let atualizada = new Date(item[2], item[1], item[0]);
        return atualizada.getTime();
    }
 
