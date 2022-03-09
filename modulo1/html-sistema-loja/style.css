@@ -1,0 +1,82 @@
+/*
+ * Cores:
+ *.madeira { #f0debb };
+ *.verde { #59a87d };
+ *.verde escuro { #16453f };
+ *.verde preto { #091c1a };
+ *.vinho { #541734 };
+ *
+ */
+
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background-color: #59a87d;
+    padding: 0;
+    margin: 0;
+}
+/* Rodapé */
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.main-footer{
+    position: fixed;
+    bottom: 0px;
+    height: 100px;
+    width: 100%;
+    background-color: #091c1a;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+}
+.main-footer .container p, h2, h3{
+    color:aliceblue
+}
+/* LEFT BOX */
+
+.main-footer .left-box img{
+    height: 90px;
+    width: 90px;
+}
+/* CENTER BOX*/
+.main-footer .container .center-box{
+    display: flex;
+    font-size: 10px;
+    width: 500px;
+    text-align: left;
+    align-content: center;
+}
+.main-footer .container .center-box .content-box{
+    margin-right: 30px;
+}
+
+.main-footer .container h3{
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.main-footer .container .center-box p{
+    margin-right: 5px;
+    font-size: 9px;
+}
+
+/* RIGHT BOX*/
+
+.main-footer .container .right-box{
+    margin-left: 50px;
+}
+
+.main-footer .container .right-box img{
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    left: 0px;
+}
+
