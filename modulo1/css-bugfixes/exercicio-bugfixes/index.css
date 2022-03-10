@@ -104,6 +104,12 @@ div:last-child {
 table {
     width: 60%;
     text-align: center;
+    margin: auto;
+}
+
+.centralizar {
+    margin-top: 50px;
+    text-align: center;
 }
 
 table td{
