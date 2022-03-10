@@ -1,7 +1,7 @@
 ```javascript
 function calculaNota(ex, p1, p2) {
     // Escreva seu código aqui
-    let media = (ex + p1 + p2) / 3;
+    let media = (ex + (p1 * 2) + (p2 * 3)) / 6;;
     if(media >= 9){
         return "A"
     }
