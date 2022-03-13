@@ -9,7 +9,7 @@
 .hero {
     position: relative;
     width: 100%;
-    height: 180vh;
+    height: 76vh;
     background: #e0e0db;
 }
 
@@ -35,7 +35,7 @@
 
 /*
  *
- * Menu da página
+ * Menu da página.
  *
  */
 
@@ -71,115 +71,58 @@ nav ul li a:hover {
 
 /*
  *
- * Corpo da página
+ * Corpo da página.
  *
  */
 
-.detel {
-    justify-content: flex-end;
-    display: inline-block;
-    width: 50%;
-    margin-top: 6%;
-    margin-bottom: 10%;
-    margin-left: 30%;
+.text-portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
 }
 
-.detel h1 {
+.text-portfolio h1 {
     font-size: 80px;
-    text-align: left;
-    color: #212121;
-    margin-bottom: 20px;
+    font-weight: bold;
+    color: #99B4B8;
 }
 
-span {
-    color: #99b4b8;
-}
-
-.detel p {
-    text-align: left;
+.text-portfolio p {
     font-size: 18px;
     color: #555;
-    padding-left: 5px;
 }
 
-.detel a {
-    text-decoration: none;
+.projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.projects p {
     font-weight: bold;
-    background: #212121;
-    padding: 10px 18px;
-    color: #fff;
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 5px;
-    border-radius: 5px;
+    font-size: 18px;
+    color: #555;
 }
 
-.detel a:hover {
-    background: #353535;
+.projects h3 {
+    margin: 0 25% 0 17%;
+    color: #555;
 }
 
-.space {
-    display: block;
-    width: 100%;
-    height: 10%;
+.projects .image-project {
+    height: 250px;
+    width: 250px;
 }
 
-.ajuste {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.images-link {
-    width: 45%;
-    height: 80%;
-    position: absolute;
-    bottom: 0;
-    right: 100px;
-}
-
-.images-link img {
-    height: 125%;
-    position: absolute;
-    margin-left: 80px;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    transition: bottom 1s, left 1s;
-}
-
-.images-link .image-card {
-    height: 25%;
-    position:absolute;
-    left: 30%;
-    bottom: 90%;
-}
-
-.images-link:hover .image-box{
-    bottom: 40px;
-}
-
-.images-link:hover .image-card{
-    left: 45%;
-}
-
-.position-text {
-    display: flex;
-    align-items: flex-start;
-    padding-bottom: 50px;
-}
-
-.position-text .image-text{
-    width: 82%; 
-    height: 82%;
-    margin-left: 15%;
-}
 /*
  * 
  * Rodapé da página.
  *
  */
+
 .footer {
     display: flex;
     justify-content: space-around;

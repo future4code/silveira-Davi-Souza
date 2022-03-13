@@ -9,7 +9,7 @@
 .hero {
     position: relative;
     width: 100%;
-    height: 180vh;
+    height: 76vh;
     background: #e0e0db;
 }
 
@@ -35,7 +35,7 @@
 
 /*
  *
- * Menu da página
+ * Menu da página.
  *
  */
 
@@ -68,118 +68,81 @@ nav ul li a {
 nav ul li a:hover {
     color: rgba(25, 0, 255, 0.603);
 }
-
 /*
  *
- * Corpo da página
+ * Corpo da página.
  *
  */
 
-.detel {
-    justify-content: flex-end;
-    display: inline-block;
-    width: 50%;
-    margin-top: 6%;
-    margin-bottom: 10%;
-    margin-left: 30%;
-}
-
-.detel h1 {
-    font-size: 80px;
-    text-align: left;
-    color: #212121;
-    margin-bottom: 20px;
-}
-
-span {
-    color: #99b4b8;
-}
-
-.detel p {
-    text-align: left;
-    font-size: 18px;
-    color: #555;
-    padding-left: 5px;
-}
-
-.detel a {
-    text-decoration: none;
-    font-weight: bold;
-    background: #212121;
-    padding: 10px 18px;
-    color: #fff;
-    display: inline-block;
-    margin-top: 20px;
-    margin-left: 5px;
-    border-radius: 5px;
-}
-
-.detel a:hover {
-    background: #353535;
-}
-
-.space {
-    display: block;
-    width: 100%;
-    height: 10%;
-}
-
-.ajuste {
-    position: absolute;
-    width: 100%;
+.body-skills {
     display: flex;
-    justify-content: space-between;
-}
-
-.images-link {
-    width: 45%;
+    justify-content: space-around;
     height: 80%;
-    position: absolute;
-    bottom: 0;
-    right: 100px;
+    width: 100%;
+    margin-top: 2%;
 }
 
-.images-link img {
-    height: 125%;
-    position: absolute;
-    margin-left: 80px;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-    transition: bottom 1s, left 1s;
+.body-skills img {
+    width: 250px;
+    padding: 1% 6% 0 0;
 }
 
-.images-link .image-card {
-    height: 25%;
-    position:absolute;
-    left: 30%;
-    bottom: 90%;
-}
-
-.images-link:hover .image-box{
-    bottom: 40px;
-}
-
-.images-link:hover .image-card{
-    left: 45%;
-}
-
-.position-text {
+.body-skills .skills {
     display: flex;
-    align-items: flex-start;
-    padding-bottom: 50px;
+    flex-direction: column;
+    padding-right: 2%;
 }
 
-.position-text .image-text{
-    width: 82%; 
-    height: 82%;
-    margin-left: 15%;
+.body-skills .skills h1 {
+    margin-top: 1%;
+    font-size: 35px;
+    font-weight: bold;
+    color: #212121;
 }
+
+.body-skills .skills ul {
+    padding-top: 40px;
+    font-weight: bold;
+}
+
+.body-skills .skills li {
+    margin: 0 0 15% 5%;
+    font-size: 25px;
+}
+
+#html{
+    color:orange
+}
+
+#css {
+    color: #00d9ff;
+}
+
+#js {
+    color: rgba(207, 191, 40, 0.897);
+}
+
+.body-skills .skills .text-skills {
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    align-items: center;
+    color: #555;
+}
+
+.body-skills .skills .text-skills .barra {
+    height: 1.6px;
+    width: 340px;
+    background-color: #212121;
+    margin-left: 10%;
+}
+
 /*
  * 
  * Rodapé da página.
  *
  */
+
 .footer {
     display: flex;
     justify-content: space-around;
