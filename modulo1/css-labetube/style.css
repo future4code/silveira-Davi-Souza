@@ -3,12 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
+    
 
 body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    max-width: 100%;
+    width: 100vw;
     min-height: 100vh;
 }
 
@@ -21,7 +22,7 @@ header {
 }
 
 header h1 {
-    margin-left: 20px;
+    margin-left: 2%;
 }
 
 header input {
@@ -42,15 +43,16 @@ main {
 .frame-video {
     display: flex;
     flex-direction: column;
-    margin-top: 40px;
+    text-align: center;
+    margin-top: 4vh;
     border: 2px solid green;
-    height: 300px;
-    width: 300px;
+    height: 35vh;
+    width: 19.3vw;
 }
 
 .frame-video video {
-    margin-bottom: 40px;
-    width: 300px;
+    margin-bottom: 4vh;
+    width: 19vw;
 }
 
 footer {
@@ -76,6 +78,115 @@ footer {
 }
 
 .main-media div video {
-    width: 1000px;
-    height: 600px;
+    width: 60vw;
+    height: 70vh;
 }
+
+@media screen and 
+(min-device-width : 320px) and 
+(max-device-width : 480px) {
+    /* celulares */
+    header {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    main {
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+        width: 100vw;
+    }
+
+    .frame-video {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 4vh;
+        border: 2px solid green;
+        height: 35vh;
+        width: 80vw;
+    }
+
+    .frame-video video {
+        margin-bottom: 4vh;
+        width: 100%;
+    }
+
+    .main-media {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-media div video {
+        width: 95%;
+        height: 80%;
+    }
+
+    footer {
+        height: 10vh;
+        width: 100vw;
+        margin-top: 2vh;
+        flex: 0 1 auto;
+    }
+}
+
+@media screen and 
+(min-device-width : 481px) and 
+(max-device-width : 800px) {
+    /* tablets */
+    
+    header {
+        position: fixed;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        flex: 0 1 auto;
+    }
+
+    main {
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .frame-video {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin-top: 4vh;
+        border: 2px solid green;
+        height: 35vh;
+        width: 50vw;
+    }
+
+    .frame-video video {
+        margin-bottom: 4vh;
+        width: 50%;
+    }
+
+    .main-media {
+        text-align: center;
+    }
+
+    .main-media div video {
+        width: 95%;
+        height: 80%;
+    }
+
+    footer {
+        height: 10vh;
+        width: 100vw;
+        margin-top: 2vh;
+    }
+}
+    
