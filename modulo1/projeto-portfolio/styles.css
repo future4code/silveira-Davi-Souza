@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap');
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 180vh;
+    background: #e0e0db;
+}
+
+.menu {
+    padding-top: 0;
+    width: 100%;
+    background: #e0e0db;
+}
+
+.middle {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.middle .text-middle {
+    color: #212121;
+    display: flex;
+    font-size: 300px;
+    margin-left: 150px;
+}
+
+/*
+ *
+ * Menu da página
+ *
+ */
+
+nav {
+    display: flex;
+    width: 86%;
+    margin: auto;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav img{
+    padding-left:12%;
+    width: 30%;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(30, 79, 99);
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: rgba(25, 0, 255, 0.603);
+}
+
+/*
+ *
+ * Corpo da página
+ *
+ */
+
+.detel {
+    justify-content: flex-end;
+    display: inline-block;
+    width: 50%;
+    margin-top: 6%;
+    margin-bottom: 10%;
+    margin-left: 30%;
+}
+
+.detel h1 {
+    font-size: 80px;
+    text-align: left;
+    color: #212121;
+    margin-bottom: 20px;
+}
+
+span {
+    color: #99b4b8;
+}
+
+.detel p {
+    text-align: left;
+    font-size: 18px;
+    color: #555;
+    padding-left: 5px;
+}
+
+.detel a {
+    text-decoration: none;
+    font-weight: bold;
+    background: #212121;
+    padding: 10px 18px;
+    color: #fff;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+.detel a:hover {
+    background: #353535;
+}
+
+.space {
+    display: block;
+    width: 100%;
+    height: 10%;
+}
+
+.ajuste {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.images-link {
+    width: 45%;
+    height: 80%;
+    position: absolute;
+    bottom: 0;
+    right: 100px;
+}
+
+.images-link img {
+    height: 125%;
+    position: absolute;
+    margin-left: 80px;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    transition: bottom 1s, left 1s;
+}
+
+.images-link .image-card {
+    height: 25%;
+    position:absolute;
+    left: 30%;
+    bottom: 90%;
+}
+
+.images-link:hover .image-box{
+    bottom: 40px;
+}
+
+.images-link:hover .image-card{
+    left: 45%;
+}
+
+.position-text {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 50px;
+}
+
+.position-text .image-text{
+    width: 82%; 
+    height: 82%;
+    margin-left: 15%;
+}
+/*
+ * 
+ * Rodapé da página.
+ *
+ */
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #212121;
+    height: 180px;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+}
+
+.footer .footer-contact .footer-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .footer-text {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer .footer-text h3{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.footer .footer-text p{
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+#email {
+    width: 250px;
+    height: 35px;
+    box-sizing: none;
+    margin: 8px 0 8px;
+    text-align: center;
+    outline: none;
+    border: 3px solid #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#email:focus {
+    border: 3px solid rgb(148, 147, 147);
+}
+
+#submit {
+    background: none;
+    font-weight: bold;
+    color: #fff;
+    height: 25px;
+    border: 2px solid #fff;
+}
+
+#submit:hover {
+    color: #cecece;
+    border: 2px solid #cecece;
+}
+
+#submit:active {
+    color: #a8a8a8;
+    border: 2px solid #a8a8a8;
+}
+
+.footer .footer-contact .footer-midia {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+}
+.footer .footer-contact .footer-midia img {
+    width: 35px;
+    height: 35px;
+}

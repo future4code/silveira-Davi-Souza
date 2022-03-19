@@ -1,0 +1,200 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap');
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 76vh;
+    background: #e0e0db;
+}
+
+.menu {
+    padding-top: 0;
+    width: 100%;
+    background: #e0e0db;
+}
+
+.middle {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.middle .text-middle {
+    color: #212121;
+    display: flex;
+    font-size: 300px;
+    margin-left: 150px;
+}
+
+/*
+ *
+ * Menu da página.
+ *
+ */
+
+nav {
+    display: flex;
+    width: 86%;
+    margin: auto;
+    padding: 20px 0;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav img{
+    padding-left:12%;
+    width: 30%;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgb(30, 79, 99);
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: rgba(25, 0, 255, 0.603);
+}
+
+/*
+ *
+ * Corpo da página.
+ *
+ */
+
+.text-portfolio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.text-portfolio h1 {
+    font-size: 80px;
+    font-weight: bold;
+    color: #99B4B8;
+}
+
+.text-portfolio p {
+    font-size: 18px;
+    color: #555;
+}
+
+.projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.projects p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #555;
+}
+
+.projects h3 {
+    margin: 0 25% 0 17%;
+    color: #555;
+}
+
+.projects .image-project {
+    height: 250px;
+    width: 250px;
+}
+
+/*
+ * 
+ * Rodapé da página.
+ *
+ */
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #212121;
+    height: 180px;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+}
+
+.footer .footer-contact .footer-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .footer-text {
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer .footer-text h3{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.footer .footer-text p{
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+#email {
+    width: 250px;
+    height: 35px;
+    box-sizing: none;
+    margin: 8px 0 8px;
+    text-align: center;
+    outline: none;
+    border: 3px solid #fff;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#email:focus {
+    border: 3px solid rgb(148, 147, 147);
+}
+
+#submit {
+    background: none;
+    font-weight: bold;
+    color: #fff;
+    height: 25px;
+    border: 2px solid #fff;
+}
+
+#submit:hover {
+    color: #cecece;
+    border: 2px solid #cecece;
+}
+
+#submit:active {
+    color: #a8a8a8;
+    border: 2px solid #a8a8a8;
+}
+
+.footer .footer-contact .footer-midia {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+}
+.footer .footer-contact .footer-midia img {
+    width: 35px;
+    height: 35px;
+}
