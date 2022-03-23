@@ -1,0 +1,23 @@
+.card-pequeno {
+    display: flex;
+    border: 1px solid black;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.card-pequeno-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+}
+
+.card-pequeno-box img {
+    width: 8%;
+    margin: 0 10px;
+    border-radius: 50%;
+}
+
+.card-pequeno-box p {
+    margin-left: 6px;
+}
