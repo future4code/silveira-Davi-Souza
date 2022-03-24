@@ -114,4 +114,4 @@ class Post extends React.Component {
   }
 }
 
-export default Post
+export default Post;
