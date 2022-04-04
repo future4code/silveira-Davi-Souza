@@ -1,0 +1,14 @@
+.etapa-3 {
+    display: flex;
+    justify-content: center;
+}
+
+.etapa-3 ol {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.etapa-3 ol li {
+    margin: 5%;
+}
