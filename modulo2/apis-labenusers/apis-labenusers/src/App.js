@@ -11,7 +11,6 @@ const headers = {
 
 class App extends React.Component {
   state = {
-    usuarios: [],
     inputName: "",
     inputEmail: "",
     tela: 1
@@ -28,6 +27,7 @@ class App extends React.Component {
             onChangeName={this.onChangeName}
             onChangeEmail={this.onChangeEmail}
             createUser={this.createUser}
+            goToListUsers={this.goToListUsers}
           />
         </div>
       )
@@ -39,18 +39,25 @@ class App extends React.Component {
             getAllUsers={this.getAllUsers}
             headers={headers}
             users={this.state.usuarios}
+            goToPostUsers={this.goToPostUsers}
+            goToUser={this.goToUser}
           />
         </div>
       )
-
+    
     default:
-      break;
+      return (
+        <div>
+          <PostUsers 
+            inputName={this.state.inputName}
+            inputEmail={this.state.inputEmail}
+            onChangeName={this.onChangeName}
+            onChangeEmail={this.onChangeEmail}
+            createUser={this.createUser}
+          />
+        </div>
+      )
     }
-  }
-  
-
-  componentDidMount = () => {
-    this.getAllUsers();
   }
 
   createUser = () => {
@@ -64,7 +71,6 @@ class App extends React.Component {
     axios.post(url, body, headers)
     .then(res => {
       alert("Usuário criado com sucesso!")
-      this.getAllUsers();
       this.setState({inputName: "", inputEmail: ""});
     })
     .catch(error => {
@@ -72,30 +78,15 @@ class App extends React.Component {
     });
   }
 
-  getAllUsers = () => {
-    const url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users"
-
-    axios.get(url, headers)
-    .then(res => {
-      this.setState({usuarios: res.data});
-    })
-    .catch(error => {
-      alert(error.res.data);
-    })
-  }
-
   onChangeName = (event) => this.setState({inputName: event.target.value});
   onChangeEmail = (event) => this.setState({inputEmail: event.target.value});
 
-  trocaTela = () => {
-    this.state.tela === 1 ? this.setState({tela: 2}) : this.setState({tela: 1});
-  }
+  goToPostUsers = () => this.setState({tela: 1});
+  goToListUsers = () => this.setState({tela: 2});
 
   render () {
     return (
       <div>
-
-        <button onClick={this.trocaTela}>Trocar Tela</button> <br/>
 
         {this.renderizaTela()}
 

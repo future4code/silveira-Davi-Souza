@@ -6,6 +6,8 @@ class PostUsers extends React.Component {
 
         return(
             <div>
+                <button onClick={this.props.goToListUsers}>Trocar Tela</button> <br/>
+
                 <input type="text" value={this.props.inputName} onChange={this.props.onChangeName} placeholder="Nome"/>
 
                 <input type="email" value={this.props.inputEmail} onChange={this.props.onChangeEmail} placeholder="E-mail"/>
