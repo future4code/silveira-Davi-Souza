@@ -14,7 +14,7 @@ class App extends React.Component {
     usuarios: [],
     inputName: "",
     inputEmail: "",
-    tela: 2
+    tela: 1
   };
 
   renderizaTela = () => {
@@ -36,6 +36,8 @@ class App extends React.Component {
       return (
         <div>
           <ListUsers 
+            getAllUsers={this.getAllUsers}
+            headers={headers}
             users={this.state.usuarios}
           />
         </div>
@@ -63,8 +65,7 @@ class App extends React.Component {
     .then(res => {
       alert("Usuário criado com sucesso!")
       this.getAllUsers();
-      this.setState({inputName: ""});
-      this.setState({inputEmail: ""});
+      this.setState({inputName: "", inputEmail: ""});
     })
     .catch(error => {
       alert(error.response.data.message);
@@ -76,7 +77,6 @@ class App extends React.Component {
 
     axios.get(url, headers)
     .then(res => {
-      console.log(res.data)
       this.setState({usuarios: res.data});
     })
     .catch(error => {
