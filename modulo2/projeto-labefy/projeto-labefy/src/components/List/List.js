@@ -46,15 +46,15 @@ class List extends React.Component {
                 <div key={playlist.id}>
                     <p>{playlist.name}</p>
                     <button onClick={() => this.deletePlaylist(playlist.id)}>X</button>
+                    <button onClick={() => this.props.goToDetails(playlist.id)}>detalhes da playlist</button>
                 </div>
             )
         });
 
         return (
             <div>
-                {/* <button onClick={this.getAllPlaylists}>Chamar playlist</button> */}
                 {list}
-                
+                <button onClick={() => this.props.goToPlaylist()}>Add Playlist</button>
             </div>
         )
     }

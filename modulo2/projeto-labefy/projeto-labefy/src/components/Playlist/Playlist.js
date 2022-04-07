@@ -32,6 +32,7 @@ class Playlist extends React.Component {
             <div>
                 <input type="text" value={this.state.nameInput} onChange={this.onChangeName} placeholder="Nome da playlist"/>
                 <button onClick={this.createPlaylist}>Enviar</button>
+                <button onClick={() => this.props.goToList()}>Lista</button>
             </div>
         )
     }

@@ -11,27 +11,49 @@ const headers = {
 
 class App extends React.Component {
   state = {
-    currentScreen: "list",
-    playlistUrl: ""
+    currentScreen: "",
+    playlistId: ""
   }
 
-  goToDetail = (url) => {
-    this.setState({currentScreen: "details", playlistUrl: url});
+  goToDetails = (id) => {
+    this.setState({currentScreen: "details", playlistId: id});
+  }
+
+  goToPlaylist = () => {
+    this.setState({currentScreen: "playlist", playlistId: ""});
+  }
+
+  goToList = () => {
+    this.setState({currentScreen: "list", playlistId: ""});
   }
 
   selectPage = () => {
     switch (this.state.currentScreen) {
       case "list":
-        return <List headers={headers}/>
+        return  <List 
+                  headers={headers}
+                  goToPlaylist={this.goToPlaylist}
+                  goToDetails={this.goToDetails}
+                />
       
       case "details":
-        return <Details/>
+        return  <Details 
+                  goToPlaylist={this.goToPlaylist}
+                  goToList={this.goToList}
+                  id={this.state.playlistId}
+                />
 
       case "playlist":
-        return <Playlist headers={headers}/>  
+        return  <Playlist 
+                  goToList={this.goToList}
+                  headers={headers}
+                />  
       
       default:
-        return <List headers={headers}/>
+        return  <Playlist 
+                  goToList={this.goToList}
+                  headers={headers}
+                /> 
     }
   }
 
