@@ -2,6 +2,7 @@ import React from "react";
 import Details from "./components/Details/Details";
 import List from "./components/List/List";
 import Playlist from "./components/Playlist/Playlist";
+import Video from "./components/Video/Video";
 
 const headers = {
   headers: {
@@ -12,19 +13,24 @@ const headers = {
 class App extends React.Component {
   state = {
     currentScreen: "",
-    playlistId: ""
+    playlistId: "",
+    url: ""
   }
 
   goToDetails = (id) => {
-    this.setState({currentScreen: "details", playlistId: id});
+    this.setState({currentScreen: "details", playlistId: id, url: ""});
   }
 
   goToPlaylist = () => {
-    this.setState({currentScreen: "playlist", playlistId: ""});
+    this.setState({currentScreen: "playlist", playlistId: "", url: ""});
   }
 
   goToList = () => {
-    this.setState({currentScreen: "list", playlistId: ""});
+    this.setState({currentScreen: "list", playlistId: "", url: ""});
+  }
+
+  goToVideo = (url) => {
+    this.setState({currentScreen: "video", playlistId: "", url: url })
   }
 
   selectPage = () => {
@@ -38,8 +44,10 @@ class App extends React.Component {
       
       case "details":
         return  <Details 
+                  headers={headers}
                   goToPlaylist={this.goToPlaylist}
                   goToList={this.goToList}
+                  goToVideo={this.goToVideo}
                   id={this.state.playlistId}
                 />
 
@@ -49,6 +57,11 @@ class App extends React.Component {
                   headers={headers}
                 />  
       
+      case "video":
+        return  <Video
+                  url={this.state.url}
+                />
+
       default:
         return  <Playlist 
                   goToList={this.goToList}
