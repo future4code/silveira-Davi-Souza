@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { Body } from "./Styled.js"
 
 class Playlist extends React.Component {
 
@@ -29,11 +30,13 @@ class Playlist extends React.Component {
 
     render () {
         return (
-            <div>
-                <input type="text" value={this.state.nameInput} onChange={this.onChangeName} placeholder="Nome da playlist"/>
-                <button onClick={this.createPlaylist}>Enviar</button>
-                <button onClick={() => this.props.goToList()}>Lista</button>
-            </div>
+            <Body>
+                <div>
+                    <input type="text" value={this.state.nameInput} onChange={this.onChangeName} placeholder="Nome da playlist"/>
+                    <button onClick={this.createPlaylist}>Enviar</button>
+                    <button onClick={() => this.props.goToList()}>Lista</button>
+                </div>
+            </Body>
         )
     }
 }

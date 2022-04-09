@@ -1,9 +1,15 @@
 import axios from "axios";
 import React from "react";
+import { Body } from "./Styled.js"
+import Delete from "../../img/delete.png"
 
 class List extends React.Component {
     state = {
         playlist: []
+    }
+
+    componentDidUpdate = () => {
+        this.getAllPlaylists();
     }
 
     componentDidMount = () => {
@@ -15,13 +21,15 @@ class List extends React.Component {
 
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`
 
-        try {
-            const res = await axios.delete(url,headers);
-
-            this.getAllPlaylists();
-        }
-        catch (err) {
-            console.log(err.response)
+        if(window.confirm("Deseja realmente apagar?")){
+            try {
+                const res = await axios.delete(url,headers);
+    
+                this.getAllPlaylists();
+            }
+            catch (err) {
+                console.log(err.response)
+            }
         }
     }
 
@@ -43,18 +51,16 @@ class List extends React.Component {
     render() {
         const list = this.state.playlist.map(playlist => {
             return(
-                <div key={playlist.id}>
-                    <p>{playlist.name}</p>
-                    <button onClick={() => this.deletePlaylist(playlist.id)}>X</button>
-                    <button onClick={() => this.props.goToDetails(playlist.id)}>detalhes da playlist</button>
-                </div>
+                <Body key={playlist.id}>
+                    <button onClick={() => this.deletePlaylist(playlist.id)}><img className="img-delete" src={Delete}/></button>
+                    <button onClick={() => this.props.goToDetails(playlist.id)}>{playlist.name}</button>
+                </Body>
             )
         });
 
         return (
             <div>
                 {list}
-                <button onClick={() => this.props.goToPlaylist()}>Add Playlist</button>
             </div>
         )
     }

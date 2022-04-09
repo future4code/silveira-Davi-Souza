@@ -1,8 +1,11 @@
 import React from "react";
 import Details from "./components/Details/Details";
 import List from "./components/List/List";
+import Menu from "./components/Menu/Menu";
 import Playlist from "./components/Playlist/Playlist";
 import Video from "./components/Video/Video";
+import { MainPage } from "./styled";
+
 
 const headers = {
   headers: {
@@ -72,9 +75,14 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <MainPage>
+        <Menu
+          goToList={this.goToList}
+          goToPlaylist={this.goToPlaylist}
+          headers={headers}
+        />
         {this.selectPage()}
-      </div>
+      </MainPage>
     );
   }  
 }
