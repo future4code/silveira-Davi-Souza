@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import Video from "../Video/Video.js";
+import { Body } from "./styled.js";
+import Delete from "../../img/delete.png"
 
 class Details extends React.Component {
     state = {
@@ -8,6 +10,14 @@ class Details extends React.Component {
         nameMusic: "",
         nameArtist: "",
         urlTrack: ""
+    }
+
+    componentDidUpdate = () => {
+        this.getPlaylistTracks();
+    }
+
+    componentDidMount = () => {
+        this.getPlaylistTracks();
     }
 
     addTrackToPlaylist = async() => {
@@ -70,25 +80,31 @@ class Details extends React.Component {
     render () {
         const tracks = this.state.playlist.map(track => {
             return (
-                <div key={track.id}>
-                    <p>{track.artist}</p>
-                    <p>{track.name}</p>
-                    <button onClick={() => this.removeTrackFromPlaylist(track.id)}>Delete Track</button>
-                    <button onClick={() => this.props.goToVideo(track.url)}>Video</button>
+                <div className="video-description" key={track.id}>
+                    <div>
+                        <p>Autor: {track.artist}</p>
+                        <p>Nome: {track.name}</p>
+                    </div>
+                    <hr/>
+                    {/* <button onClick={() => this.props.goToVideo(track.url)}>Video</button> */}
                     <Video url={track.url}/>
+                    <hr/>
+                    <button className="button-delete" onClick={() => this.removeTrackFromPlaylist(track.id)}><img className="img-delete" src={Delete}/></button>
                 </div>
             )
         });
 
         return (
-            <div>
-                <input type="text" value={this.state.nameMusic} onChange={this.onChangeMusic} placeholder="Nome da música"/>
-                <input type="text" value={this.state.nameArtist} onChange={this.onChangeArtist} placeholder="Nome do artista"/>
-                <input type="text" value={this.url} onChange={this.onChangeUrl} placeholder="Url da música"/>
-                <button onClick={this.addTrackToPlaylist}>Add Track</button><br/>
-                <button onClick={this.getPlaylistTracks}>Show All</button>
+            <Body>
+                <div className="div-form">
+                    <input className="input" type="text" value={this.state.nameMusic} onChange={this.onChangeMusic} placeholder="Nome da música"/>
+                    <input className="input" type="text" value={this.state.nameArtist} onChange={this.onChangeArtist} placeholder="Nome do artista"/>
+                    <input className="input" type="text" value={this.url} onChange={this.onChangeUrl} placeholder="Url da música"/>
+                    <button onClick={this.addTrackToPlaylist}>Adicionar</button><br/>
+                </div>
+                <hr/>
                 {tracks}
-            </div>
+            </Body>
         );
     }  
 }

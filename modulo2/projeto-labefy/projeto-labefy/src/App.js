@@ -6,7 +6,6 @@ import Playlist from "./components/Playlist/Playlist";
 import Video from "./components/Video/Video";
 import { MainPage } from "./styled";
 
-
 const headers = {
   headers: {
     Authorization: "Davi-Souza-Silveira"
@@ -41,7 +40,6 @@ class App extends React.Component {
       case "list":
         return  <List 
                   headers={headers}
-                  goToPlaylist={this.goToPlaylist}
                   goToDetails={this.goToDetails}
                 />
       
@@ -80,6 +78,7 @@ class App extends React.Component {
           goToList={this.goToList}
           goToPlaylist={this.goToPlaylist}
           headers={headers}
+          goToDetails={this.goToDetails}
         />
         {this.selectPage()}
       </MainPage>

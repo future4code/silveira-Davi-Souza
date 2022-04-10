@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Body } from "./Styled.js"
 import Delete from "../../img/delete.png"
+import ImgPlaylist from "../../img/playlist.jpg"
 
 class List extends React.Component {
     state = {
@@ -51,17 +52,20 @@ class List extends React.Component {
     render() {
         const list = this.state.playlist.map(playlist => {
             return(
-                <Body key={playlist.id}>
-                    <button onClick={() => this.deletePlaylist(playlist.id)}><img className="img-delete" src={Delete}/></button>
-                    <button onClick={() => this.props.goToDetails(playlist.id)}>{playlist.name}</button>
-                </Body>
+                <div className="div-card" key={playlist.id}>
+                    <button onClick={() => this.props.goToDetails(playlist.id)}><img src={ImgPlaylist}/></button>
+                    <div>
+                        <button onClick={() => this.props.goToDetails(playlist.id)}>{playlist.name}</button>
+                        <button onClick={() => this.deletePlaylist(playlist.id)}><img className="img-delete" src={Delete}/></button>
+                    </div>
+                </div>
             )
         });
 
         return (
-            <div>
+            <Body>
                 {list}
-            </div>
+            </Body>
         )
     }
 }

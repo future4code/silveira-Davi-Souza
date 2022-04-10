@@ -1,13 +1,14 @@
 import React from "react";
+import { Body } from "./styled.js";
 
 class Video extends React.Component {
     render() {
         return (
-            <div>
-                <video width="750" height="500" controls >
+            <Body>
+                <audio controls >
                     <source src={this.props.url} />
-                </video>
-            </div>
+                </audio>
+            </Body>
         )
     }
 }

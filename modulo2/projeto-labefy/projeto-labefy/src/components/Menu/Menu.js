@@ -7,6 +7,9 @@ import Logo from "../../img/logo-original.png"
 import List from "../List/List.js";
 
 class Menu extends React.Component {
+
+    
+
     render() {
         return (
             <MainMenu>
@@ -25,18 +28,17 @@ class Menu extends React.Component {
                     </ul>
                 </div>
                 <hr/>
-                <div className="div-options">
+                {/* <div className="div-options">
                     <ul>
                         <li>
                             <List
                                 headers={this.props.headers}
-                                goToPlaylist={this.goToPlaylist}
-                                goToDetails={this.goToDetails}
+                                goToDetails={this.props.goToDetail}
                             />
                         </li>
                     </ul>
                     
-                </div>
+                </div> */}
                 
             </MainMenu>
         )
