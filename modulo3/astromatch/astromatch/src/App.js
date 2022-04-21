@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import Person from "./components/Person/Person";
 import Matches from "./components/Matches/Matches";
+import { Main } from "./Styled";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("");
@@ -33,13 +34,13 @@ function App() {
             />
           </div>
         )
-    }
-  }
+    };
+  };
 
   return (
-    <div className="App">
-      {toPage()}      
-    </div>
+    <Main>
+      {toPage()}
+    </Main>
   );
 }
 
