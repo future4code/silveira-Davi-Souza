@@ -8,18 +8,21 @@ import TripDetailPage from "../pages/TripDetailsPage/TripDetailsPage";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 export const Router = () => {
+
     return (
         <div>
             <BrowserRouter>
 
                 <Routes>
-                <Route index element={ <HomePage/> } />
-                <Route path="login" element={ <LoginPage/> } />
-                <Route path="adminHome" element={ <AdminHomePage/> } />
-                <Route path="application" element={ <ApplicationFormPage/> } />
-                <Route path="createTrip" element={ <CreateTripPage/> }/>
-                <Route path="listTrips" element={ <ListTripsPage/> }/>
-                <Route path="tripDetail" element={ <TripDetailPage/> }/>
+
+                    <Route index element={ < HomePage /> } />
+                    <Route path="login" element={ < LoginPage /> } />
+                    <Route path="adminHome" element={ < AdminHomePage  /> } />
+                    <Route path="application" element={ < ApplicationFormPage  /> } />
+                    <Route path="createTrip" element={ < CreateTripPage  /> }/>
+                    <Route path="listTrips" element={ < ListTripsPage  /> }/>
+                    <Route path="tripDetail" element={ < TripDetailPage  /> }/>
+
                 </Routes>
 
             </BrowserRouter>

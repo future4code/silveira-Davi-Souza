@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreateTripPage() {
+  const navigate = useNavigate();
+
+  const goToPage = (page) => {
+    navigate(page)
+  }
+
   return (
     <div>
       <h1>Criar Viagem</h1>
@@ -13,8 +20,8 @@ function CreateTripPage() {
       <input/>
       <input/>
       <input/>
-      <button>Voltar</button>
-      <button>Criar</button>
+      <button onClick={() => goToPage(-1)}>Voltar</button>
+      <button onClick={""}>Criar</button>
     </div>
   );
 }

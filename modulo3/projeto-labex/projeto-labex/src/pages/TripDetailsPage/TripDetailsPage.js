@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 function TripDetailPage() {
+  useEffect(() => {
+
+  },[])
+
   return (
     <div>
       <h1>Title</h1>

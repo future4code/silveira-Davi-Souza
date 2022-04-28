@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ApplicationFormPage() {
+  const navigate = useNavigate();
+
+  const goToPage = (page) => {
+    navigate(page)
+  }
+
   return (
     <div>
       <h1>Inscreva-se para uma viagem</h1>
@@ -14,8 +21,8 @@ function ApplicationFormPage() {
       <select>
         <option></option>
       </select>
-      <button>Voltar</button>
-      <button>Enviar</button>
+      <button onClick={() => goToPage(-1)}>Voltar</button>
+      <button onClick={""}>Enviar</button>
     </div>
   );
 }
