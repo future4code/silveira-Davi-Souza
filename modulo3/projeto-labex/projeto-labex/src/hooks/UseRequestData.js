@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useRequestData = (url) => {
+export const useRequestData = (url, header) => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(undefined);
@@ -10,13 +10,14 @@ export const useRequestData = (url) => {
         setIsLoading(true);
         setError(undefined);
         
-        axios.get(url)
+        axios.get(url, header)
             .then((res) => {
+                console.log("ENTREI NO THEN", res.data)
                 setIsLoading(false);
                 setData(res.data.trips);
-                console.log(res.data.trips)
             })
             .catch((err) => {
+                console.log("ENTREI NO CATCH", err.response.data)
                 setError(err);
                 setIsLoading(false);
             });
@@ -24,36 +25,6 @@ export const useRequestData = (url) => {
 
         useEffect(() => {
             getData();
-        }, [url]);
-
-  return [data, isLoading, error];
-
-}
-
-export const usePostData = (url, objBody) => {
-    const [data, setData] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(undefined);
-    const [body, setBody] = useState(objBody);
-
-
-    const postData = () => {
-        setIsLoading(true);
-        setError(undefined);
-        
-        axios.post(url, body)
-            .then((res) => {
-                setIsLoading(false);
-                setData(res.data);
-            })
-            .catch((err) => {
-                setError(err);
-                setIsLoading(false);
-            });
-        };
-
-        useEffect(() => {
-            postData();
         }, [url]);
 
   return [data, isLoading, error];

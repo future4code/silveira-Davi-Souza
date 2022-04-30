@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button_enviar } from "../../Styled";
  
 
 function HomePage() {
@@ -12,8 +13,8 @@ function HomePage() {
   return (
     <div>
       <h1>LabeX</h1>
-      <button onClick={() => goToPage("/listTrips")}> Ver Viagens </button>
-      <button onClick={() => goToPage("/login")}> Área de Admin </button>
+      <Button_enviar onClick={() => goToPage("/listTrips")}> Ver Viagens </Button_enviar>
+      <Button_enviar onClick={() => goToPage("/login")}> Área de Admin </Button_enviar>
     </div>
   );
 }
