@@ -11,10 +11,16 @@ function HomePage() {
   }
 
   const register = () => {
-    if(localStorage.getItem("token").length > 2 ){
-      navigate("/adminHome")
+    if(localStorage.getItem("token")){
+      if(localStorage.getItem("token").length > 2 ){
+        navigate("/adminHome")
+      }
+      else{
+        navigate("/login")
+      }
     }
     else{
+      localStorage.setItem("token", "");
       navigate("/login")
     }
   }

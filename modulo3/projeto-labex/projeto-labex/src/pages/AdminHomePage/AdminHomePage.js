@@ -27,7 +27,7 @@ function AdminHomePage() {
     };
 
     const logout = () => {
-        localStorage.setItem("token", " ");
+        localStorage.setItem("token", "");
         navigate("/");
     }
 
