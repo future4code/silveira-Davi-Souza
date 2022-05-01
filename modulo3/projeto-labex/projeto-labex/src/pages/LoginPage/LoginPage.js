@@ -50,8 +50,8 @@ function LoginPage() {
           title={"Sua senha deve ter no mínimo 6 caracteres."}
         />
         <div>
-          <Button_enviar>Entrar</Button_enviar>
           <Button_enviar onClick={() => goToPage(-1)}>Voltar</Button_enviar>
+          <Button_enviar>Entrar</Button_enviar>
         </div>
       </FormStyled>
     </DivStyled>

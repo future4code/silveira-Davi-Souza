@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL, headers } from "../../constants/urls";
-import { Button_enviar, DivStyled } from "../../Styled";
+import { Button_enviar, DivStyled, CardStyled } from "../../Styled";
 
 function TripDetailPage() {
   const id = localStorage.getItem("id");
@@ -33,14 +33,44 @@ function TripDetailPage() {
     });
   }
 
+  const decideCandidate = (approve, candidateId) => {
+    const body = {
+      approve: approve
+    }
+
+    axios.put(`${BASE_URL}/trips/${id}/candidates/${candidateId}/decide`, body, headers)
+    .then( response => {
+      alert(response.data.message)
+    })
+    .catch( error => {
+      alert(error);
+    });
+  }
+
   const renderCandidates = () => {
     return data.candidates.map( candidate => {
-        return <li key={candidate.id}>{candidate.name}</li>
+        return <CardStyled key={candidate.id}>
+            <p>Nome: <span>{candidate.name}</span></p>
+            <p>Profissão: <span>{candidate.profession}</span></p>
+            <p>Idade: <span>{candidate.age}</span></p>
+            <p>País: <span>{candidate.country}</span></p>
+            <p>Texto de Candidatura: <span>{candidate.applicationText}</span></p>
+            <div>
+              <Button_enviar onClick={() => decideCandidate(true, candidate.id)}>Aprovar</Button_enviar>
+              <Button_enviar onClick={() => decideCandidate(false, candidate.id)}>Reprovar</Button_enviar>
+            </div>
+          </CardStyled>
       });
   };
 
+  const renderApproved = () => {
+    return data.approved.map( approved => {
+      return (
+        <li key={approved.id}>{approved.name}</li>
+      )
+    });
+  }
   
-
   return (
     <DivStyled>
       {console.log("ID:", id)}
@@ -62,10 +92,9 @@ function TripDetailPage() {
       ) : ("Lista não encontrada"))}
       <Button_enviar onClick={() => goToPage(-1)}>Voltar</Button_enviar>
       <h2>Candidatos Pendentes</h2>
-      {/* {data.length > 0 ? } */}
-      <p>Não há candidatos pendentes</p>
+      {data.candidates !== undefined ? (<ul>{renderCandidates()}</ul>) : (<p>Não há candidatos pendentes</p>)}
       <h2>Candidatos Aprovados</h2>
-      <p>Não há candidatos Aprovados</p>
+      {data.approved !== undefined ? (<ul>{renderApproved()}</ul>) : (<p>Não há candidatos Aprovados</p>)}
     </DivStyled>
   );
 };

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL, headers } from "../../constants/urls";
 import { useRequestData } from "../../hooks/UseRequestData.js"
@@ -14,7 +14,7 @@ function AdminHomePage() {
     const deleteTrip = (id) => {
         axios.delete(`${BASE_URL}/trips/${id}`, headers)
         .then( res => {
-            console.log(res.data);
+            
         })
         .catch( error => {
             alert(error.response);
@@ -26,13 +26,18 @@ function AdminHomePage() {
         navigate(page)
     };
 
+    const logout = () => {
+        localStorage.setItem("token", " ");
+        navigate("/");
+    }
+
     return (
         <DivStyled>
             <h1>Painel Administrativo</h1>
             <div>
                 <Button_enviar onClick={() => goToPage(-1)}>Voltar</Button_enviar>
                 <Button_enviar onClick={() => goToPage("/createTrip")}>Criar Viagem</Button_enviar>
-                <Button_enviar>Logout</Button_enviar>
+                <Button_enviar onClick={logout}>Logout</Button_enviar>
             </div>
             {isLoading && <h1>Carregando...</h1>}
             {!isLoading && error && <h1>Deu erro</h1>}

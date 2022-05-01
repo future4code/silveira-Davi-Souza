@@ -152,6 +152,7 @@ export const CardStyled = styled.div `
   margin: 10px 0px;
   max-width: 500px;
   width: 100%;
+  text-align: start;
 
   span{
     color: black;

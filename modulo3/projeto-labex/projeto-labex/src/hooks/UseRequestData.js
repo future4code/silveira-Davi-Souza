@@ -12,12 +12,10 @@ export const useRequestData = (url, header) => {
         
         axios.get(url, header)
             .then((res) => {
-                console.log("ENTREI NO THEN", res.data)
                 setIsLoading(false);
                 setData(res.data.trips);
             })
             .catch((err) => {
-                console.log("ENTREI NO CATCH", err.response.data)
                 setError(err);
                 setIsLoading(false);
             });

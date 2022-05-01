@@ -8,12 +8,12 @@ import { Button_enviar, DivStyled, FormStyled, InputStyled, SelectStyled } from 
 
 function ApplicationFormPage() {
   const navigate = useNavigate();
-  const [data, isLoading, error] = useRequestData(`${BASE_URL}/trips`);
+  const [data, isLoading] = useRequestData(`${BASE_URL}/trips`);
 
   const [form, onChange, cleanFields] = useForm({
     selectTripId: "",
     name: "",
-    age: 0,
+    age: "",
     applicationText: "",
     profession: "",
     country: "",
@@ -22,8 +22,6 @@ function ApplicationFormPage() {
   const goToPage = (page) => {
     navigate(page)
   }
-
-
 
   const applyToTrip = (event) => {
     event.preventDefault();
@@ -38,7 +36,7 @@ function ApplicationFormPage() {
 
     axios.post(`${BASE_URL}/trips/${form.selectTripId}/apply`, body)
     .then( response => {
-      console.log(response.data);
+      cleanFields();
     })
     .catch(error => {
       alert(error.response);
@@ -56,6 +54,7 @@ function ApplicationFormPage() {
       <FormStyled onSubmit={applyToTrip}>
         <h1>Inscreva-se para uma viagem</h1>
         <SelectStyled name="selectTripId" value={form.selectTripId} onChange={onChange}>
+          <option value="" selected disabled hidden>Escolha uma viagem</option>
           {!isLoading && data && (data.length > 0 ? (list) : ("lista não encontrada"))}
         </SelectStyled>
         <InputStyled 
@@ -72,7 +71,7 @@ function ApplicationFormPage() {
           onChange={onChange}
           placeholder="Idade"
           pattern={"^(1[89]|[2-9]\d)$"}
-          title={"Sua senha deve ter no mínimo 6 caracteres."}
+          title={"Você deve ter 18 anos ou mais."}
           required
         />
         <InputStyled
@@ -90,6 +89,7 @@ function ApplicationFormPage() {
           required
         />
         <SelectStyled name="country" value={form.country} onChange={onChange}>
+          <option value="" selected disabled hidden>Escolha um País</option>
           <option value="Brasil">Brasil</option>
           <option value="Argentina">Argentina</option>
           <option value="Angola">Angola</option>
