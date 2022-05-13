@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { goToRegister } from "../../routes/coodinator";
 import { login } from "../../services/user";
+import { StyledInput, StyledPage } from "../../Styled";
 
 const Login = ({ setRightButtonText }) => {
     useUnprotectedPage();
 
-    const [form, onChange, cleanFields] = useForm({email: "", password: ""});
+    const [ form, onChange, cleanFields ] = useForm({email: "", password: ""});
+
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -16,14 +19,14 @@ const Login = ({ setRightButtonText }) => {
 
         event.preventDefault();
 
-        login(form, cleanFields, navigate, setRightButtonText);
+        login(form, cleanFields, navigate, setRightButtonText, setIsLoading);
     }
 
     return (
-        <div>
+        <StyledPage>
             <h1>Login</h1>
             <form onSubmit={onSubmit}>
-                <input 
+                <StyledInput 
                     name="email"
                     type="email" 
                     value={form.email} 
@@ -31,7 +34,7 @@ const Login = ({ setRightButtonText }) => {
                     placeholder={"E-mail"}
                     required
                 />
-                <input 
+                <StyledInput 
                     name="password"
                     type="password" 
                     value={form.password} 
@@ -43,10 +46,11 @@ const Login = ({ setRightButtonText }) => {
                 />
                 
                 <button>Continuar</button>
-                
+
             </form>
             <button onClick={ () => goToRegister( navigate )}>Crie uma conta!</button>
-        </div>
+            {isLoading ? <p>Carregando...</p> : <></>}
+        </StyledPage>
     );
 };
 

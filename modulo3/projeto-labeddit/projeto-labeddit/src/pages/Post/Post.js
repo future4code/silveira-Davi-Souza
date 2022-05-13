@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import { BASE_URL } from "../../constants/urls";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequestData from "../../hooks/useRequestData";
 import { goToFeed, goToRegister } from "../../routes/coodinator";
-import { votePost } from "../../services/user";
+import VoteButtons from "../../components/VoteButtons/VoteButtons";
+import CreatePost from "../../components/CreatePost/CreatePost";
 
 const Post = ({ rightButtonText, setRightButtonText }) => {
     useProtectedPage();
     const navigate = useNavigate();
+
     const posts = useRequestData([],`${BASE_URL}/posts`);
-    console.log(posts);
 
     const onClickPost = (id, index) => {
         goToFeed(navigate, id, index)
@@ -26,11 +27,7 @@ const Post = ({ rightButtonText, setRightButtonText }) => {
                     <p>{post.title}</p>
                 </div>
                 <div>
-                    <div>
-                        <button onClick={() => votePost(1, post.userVote, post.id)}>UP</button>
-                        <p>{post.voteSum}</p>
-                        <button onClick={() => votePost(-1, post.userVote, post.id)}>DOWN</button>
-                    </div>
+                    <VoteButtons userVote={post.userVote} id={post.id} voteSum={post.voteSum} />
                     <button onClick={() => onClickPost(post.id, index)}>Comments</button>
                 </div>
             </div>
@@ -42,7 +39,8 @@ const Post = ({ rightButtonText, setRightButtonText }) => {
             <Header rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
             <h1>Post Page</h1>
             <button onClick={ () => goToRegister(navigate)}>Muda Página</button>
-            {postsList}
+            <CreatePost/>
+            {postsList.length > 0 ? <>{postsList}</> : <p>Carregando...</p>}
         </div>
     );
 }

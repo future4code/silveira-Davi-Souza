@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
-const useRequestData = (initialData, url) => {
-    const [ data, setData ] = useState(initialData);
+const useCreateData = (body, url) => {
 
     useEffect(() => {
-        axios.get(url, {
+        axios.post(url, body, {
             headers: {
                 Authorization: localStorage.getItem("token")
             }
         })
         .then( response => {
-            setData(response.data);
+            console.log(response.data)
         })
         .catch( error => {
             console.log(error);
@@ -19,7 +18,6 @@ const useRequestData = (initialData, url) => {
         });
     },[url]);
 
-    return data;
 }
 
-export default useRequestData;
+export default useCreateData;

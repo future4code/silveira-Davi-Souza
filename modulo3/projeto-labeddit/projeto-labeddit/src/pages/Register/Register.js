@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import useForm from "../../hooks/useForm";
@@ -10,13 +10,15 @@ const Register = ({ rightButtonText, setRightButtonText }) => {
 
     const [form, onChange, cleanFields] = useForm({username: "", email: "", password: "" });
   
+    const [ isLoading, setIsLoading ] = useState(false);
+
     const navigate = useNavigate();
 
     const onSubmit = (event) => {
 
         event.preventDefault();
 
-        signUp( form, cleanFields, navigate, setRightButtonText );
+        signUp( form, cleanFields, navigate, setRightButtonText, setIsLoading );
     }
 
     return (
@@ -53,6 +55,7 @@ const Register = ({ rightButtonText, setRightButtonText }) => {
                 
                 <button>Continuar</button>
                 
+                {isLoading ? <p>Carregando...</p> : <></>}
             </form>
         </div>
     );
