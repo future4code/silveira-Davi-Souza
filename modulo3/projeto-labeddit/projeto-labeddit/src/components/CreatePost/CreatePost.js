@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BASE_URL } from "../../constants/urls";
 import useForm from "../../hooks/useForm";
 import { createData } from "../../services/createContent";
+import { StyledButtonCreate, StyledForm, StyledHr, StyledInputCreate, StyledLoading } from "../../Styled";
+import { StyledInputMain, StyledMain } from "./Styled";
 
 const CreatePost = () => {
     const [form, onChange, cleanFields] = useForm({title: "", body: ""});
@@ -15,30 +17,28 @@ const CreatePost = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <input 
-                        name="title"
-                        type="text"
-                        value={form.title}
-                        onChange={onChange}
-                        placeholder={"Título"}
-                        required
-                    />
-                    <input 
-                        name="body"
-                        type="text" 
-                        value={form.body} 
-                        onChange={onChange} 
-                        placeholder={"Escreva seu post..."} 
-                        required 
-                    />
-                </div>
-                <button>Postar</button>
-            </form>
-            {isLoading ? <p>Carregando...</p> : <></>}
-        </div>
+        <StyledMain>
+            <StyledForm onSubmit={onSubmit}>
+                <StyledInputMain 
+                    name="title"
+                    type="text"
+                    value={form.title}
+                    onChange={onChange}
+                    placeholder={"Título"}
+                    required
+                />
+                <StyledInputCreate 
+                    name="body"
+                    type="text" 
+                    value={form.body} 
+                    onChange={onChange} 
+                    placeholder={"Escreva seu post..."} 
+                    required 
+                />
+                {isLoading ? <StyledLoading></StyledLoading> : <StyledButtonCreate>Postar</StyledButtonCreate>}
+                <StyledHr/>
+            </StyledForm>
+        </StyledMain>
     );
 }
 

@@ -3,8 +3,8 @@ import arrowUp from "../../img/arrow-up.png";
 import arrowDown from "../../img/arrow-down.png";
 import arrowUpActive from "../../img/arrow-up-active.png";
 import arrowDownActive from "../../img/arrow-down-active.png";
-import { StyledButton } from "./Styled";
 import { voteComment } from "../../services/user";
+import { StyledButton, StyledDivButton } from "../VoteButtons/Styled";
 
 const VoteComments = ({ userVote, id, voteSum}) => {
 
@@ -35,11 +35,11 @@ const onClickButton = (vote) => {
 
   return (
     <div>
-      <div>
+      <StyledDivButton>
           <StyledButton onClick={() => onClickButton(1, userVote, id)}><img src={arrowButton.up} /></StyledButton>
           <p>{voteSum === null ? 0 : voteSum}</p>
           <StyledButton onClick={() => onClickButton(-1, userVote, id)}><img src={arrowButton.down} /></StyledButton>
-      </div>
+      </StyledDivButton>
     </div>
   );
 }

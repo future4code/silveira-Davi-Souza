@@ -6,7 +6,7 @@ import Login from "../pages/Login/Login";
 import Post from "../pages/Post/Post";
 import Register from "../pages/Register/Register";
 
-const Router = ({ rightButtonText, setRightButtonText }) => {
+const Router = ({ button, setButton, rightButtonText, setRightButtonText }) => {
 
     return (
         <div>
@@ -16,12 +16,19 @@ const Router = ({ rightButtonText, setRightButtonText }) => {
 
                     <Route index element={ < Login rightButtonText={rightButtonText} setRightButtonText={setRightButtonText} /> } />
                     <Route path="feed/:id/:index" element={ 
-                        < Feed 
+                        < Feed
+                            button={button} 
+                            setButton={setButton} 
                             rightButtonText={rightButtonText} 
                             setRightButtonText={setRightButtonText} 
                         /> } 
                     />
-                    <Route path="post" element={ < Post rightButtonText={rightButtonText} setRightButtonText={setRightButtonText} /> } />
+                    <Route path="post" element={ 
+                        < Post  
+                            rightButtonText={rightButtonText} 
+                            setRightButtonText={setRightButtonText} 
+                        /> } 
+                    />
                     <Route path="register" element={ < Register rightButtonText={rightButtonText} setRightButtonText={setRightButtonText} /> } />
                     <Route path="*" element={ < Error /> } />
 

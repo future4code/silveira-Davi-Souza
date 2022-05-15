@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { goToLogin } from "../../routes/coodinator";
-import { StyledDivHeader } from "./Styled";
+import { goToLogin, goToPost } from "../../routes/coodinator";
+import { StyledButton, StyledChangePage, StyledDivHeader, StyledEmpty, StyledVector } from "./Styled";
 
-const Header = ({ rightButtonText, setRightButtonText }) => {
+const Header = ({ button, setButton, rightButtonText, setRightButtonText }) => {
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
@@ -22,13 +22,28 @@ const Header = ({ rightButtonText, setRightButtonText }) => {
         }
     }
 
+    const buttonAction = () => {
+        goToPost(navigate);
+        setButton(false);
+    }
+
     return (
     <StyledDivHeader>
+        <StyledEmpty>
+            {button ? <StyledChangePage onClick={buttonAction}><div></div></StyledChangePage> : <></>}
+        </StyledEmpty>
+        <StyledVector>
+            <div>
+                <div className="div-up-left"></div>
+                <div className="div-up-right"></div>  
+            </div>
+            <div>
+                <div className="div-down-right"></div>
+                <div className="div-down-left"></div>  
+            </div>
+        </StyledVector>
         <div>
-            <img/>
-        </div>
-        <div>
-            <button onClick={rightButtonAction}>{ rightButtonText }</button>
+            <StyledButton onClick={rightButtonAction}>{ rightButtonText }</StyledButton>
         </div>
     </StyledDivHeader>
     );

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { BASE_URL } from "../../constants/urls";
 import useForm from "../../hooks/useForm";
 import { createData } from "../../services/createContent";
+import { StyledButtonCreate, StyledForm, StyledHr, StyledInputCreate, StyledLoading } from "../../Styled";
+import { StyledMain } from "../CreatePost/Styled";
 
 const CreateComment = ({id}) => {
 
@@ -16,22 +18,21 @@ const CreateComment = ({id}) => {
     }
 
     return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <div>
-                    <input 
-                        name="body"
-                        type="text" 
-                        value={form.body} 
-                        onChange={onChange} 
-                        placeholder={"Escreva seu post..."} 
-                        required 
-                    />
-                </div>
-                <button>Postar</button>
-            </form>
-            {isLoading ? <p>Carregando...</p> : <></>}
-        </div>
+        <StyledMain>
+            <StyledForm onSubmit={onSubmit}>
+                <StyledInputCreate 
+                    name="body"
+                    type="text" 
+                    value={form.body} 
+                    onChange={onChange} 
+                    placeholder={"Adicionar comentário"} 
+                    required 
+                />
+                {isLoading ? <StyledLoading></StyledLoading> : <StyledButtonCreate>Responder</StyledButtonCreate>}
+                <StyledHr/>
+            </StyledForm>
+            
+        </StyledMain>
     );
 }
 

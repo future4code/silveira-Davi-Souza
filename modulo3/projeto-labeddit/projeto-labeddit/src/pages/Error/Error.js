@@ -1,11 +1,12 @@
 import React from "react";
+import { StyledPage } from "../../Styled";
 
 const Error = () => {
 
     return (
-        <div>
+        <StyledPage>
             <h1>Error</h1>
-        </div>
+        </StyledPage>
     );
 }
 

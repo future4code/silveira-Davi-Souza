@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import CreateComment from "../../components/CreateComment/CreateComment";
 import Header from "../../components/Header/Header";
 import VoteButtons from "../../components/VoteButtons/VoteButtons";
@@ -7,48 +7,63 @@ import VoteComments from "../../components/VoteComments/VoteComments";
 import { BASE_URL } from "../../constants/urls";
 import useProtectedPage from "../../hooks/useProtectedPage";
 import useRequestData from "../../hooks/useRequestData";
-import { goToPost } from "../../routes/coodinator";
+import { StyledCardDiv, StyledLoading, StyledPage } from "../../Styled";
+import comment from "../../img/comment.png"
+import { StyledButton, StyledList } from "../Post/Styled";
+import { StyledListFeed } from "./Styled";
 
-const Feed = ({ rightButtonText, setRightButtonText }) => {
+const Feed = ({ button, setButton, rightButtonText, setRightButtonText }) => {
     useProtectedPage();
-    const navigate = useNavigate();
+
+    useEffect( () => {
+        setButton(true);
+    }, []);
+
     const params = useParams();
 
     const post = useRequestData( {}, `${BASE_URL}/posts`)[params.index];
-    console.log("post: ", post)
 
     const comments = useRequestData( [], `${BASE_URL}/posts/${params.id}/comments`);
 
     const commentsList = comments.map(comment => {
-        console.log(comment)
         return (
-            <div key={comment.id}>
+            <StyledCardDiv key={comment.id}>
+                <p className="styled-card-name">Enviado por: {comment.username}</p>
                 <p>{comment.body}</p>
-                <VoteComments userVote={comment.userVote} id={comment.id} voteSum={comment.voteSum} />
-            </div>
+                <div>
+                    <VoteComments userVote={comment.userVote} id={comment.id} voteSum={comment.voteSum} />
+                </div>
+            </StyledCardDiv>
         )
     })
 
     return (
-        <div>
-            <Header rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
-            <h1>Feed Page</h1>
-            <button onClick={ () => goToPost(navigate)}>Muda Página</button>
-            {post ? <></> : <p>Carregando...</p> }
-            {post && <div>
-                <div>
-                    <p>Enviado por: {post.username}</p>
-                    <p>{post.body}</p>
-                    <p>{post.title}</p>
-                </div>
-                <div>
-                    <VoteButtons userVote={post.userVote} id={post.id} voteSum={post.voteSum} />
-                </div>
-                <CreateComment id={post.id} />
-            </div>}
-            {commentsList === null ? <p>Não tem comentários</p> : <></>}
-            {commentsList.length > 0 ? <>{commentsList}</> : <p>Carregando...</p>}
-        </div>
+        <StyledPage>
+            <Header 
+                button={button} 
+                setButton={setButton} 
+                rightButtonText={rightButtonText} 
+                setRightButtonText={setRightButtonText}
+            />
+            <StyledList>{post ? <></> : <StyledLoading></StyledLoading> }</StyledList>
+            {post && <StyledListFeed>
+                    <StyledCardDiv>
+                            <p className="styled-card-name">Enviado por: {post.username}</p>
+                            <p>{post.body}</p>
+                            <div className="styled-card-buttons">
+                                <VoteButtons userVote={post.userVote} id={post.id} voteSum={post.voteSum}/>
+                                <div className="styled-card-comments">
+                                    <StyledButton><img src={comment}/></StyledButton>
+                                    <p>{post.commentCount === null ? 0 : post.commentCount}</p>
+                                </div>
+                            </div>
+                    </StyledCardDiv>      
+                    <CreateComment id={post.id} />
+            </StyledListFeed>}
+            <StyledList>
+                {commentsList.length > 0 ? <>{commentsList}</> : <p>Não há comentários</p>}
+            </StyledList>
+        </StyledPage>
     );
 }
 

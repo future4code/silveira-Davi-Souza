@@ -4,6 +4,8 @@ import Header from "../../components/Header/Header";
 import useForm from "../../hooks/useForm";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 import { signUp } from "../../services/user";
+import { StyledButton, StyledDivButtons, StyledForm, StyledInput, StyledPage, StyledLoading } from "../../Styled";
+import { StyledTerms, StyledTitle } from "./Styled";
 
 const Register = ({ rightButtonText, setRightButtonText }) => {
     useUnprotectedPage();
@@ -22,11 +24,15 @@ const Register = ({ rightButtonText, setRightButtonText }) => {
     }
 
     return (
-        <div>
+        <StyledPage>
             <Header rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
-            <h1>Register</h1>
-            <form onSubmit={onSubmit}>
-                <input 
+            <StyledTitle>
+                <div>
+                    <h1>Olá, boas vindas ao LabEddit ;)</h1>
+                </div>
+            </StyledTitle>
+            <StyledForm onSubmit={onSubmit}>
+                <StyledInput 
                     name="username"
                     type="username" 
                     value={form.username} 
@@ -34,7 +40,7 @@ const Register = ({ rightButtonText, setRightButtonText }) => {
                     placeholder={"Nome"}
                     required
                 />
-                <input 
+                <StyledInput 
                     name="email"
                     type="email" 
                     value={form.email} 
@@ -42,7 +48,7 @@ const Register = ({ rightButtonText, setRightButtonText }) => {
                     placeholder={"E-mail"}
                     required
                 />
-                <input 
+                <StyledInput 
                     name="password"
                     type="password" 
                     value={form.password} 
@@ -52,12 +58,18 @@ const Register = ({ rightButtonText, setRightButtonText }) => {
                     pattern={"^.{8,}"}
                     title={"Sua senha deve ter no mínimo 8 caracteres."}
                 />
-                
-                <button>Continuar</button>
-                
-                {isLoading ? <p>Carregando...</p> : <></>}
-            </form>
-        </div>
+                <StyledTerms>
+                    <p>Ao continuar, você concorda com o nosso <a href="">Contrato de usuário</a> e nossa <a href="">Política de Privacidade</a></p>
+                    <div>
+                        <input type="checkbox" id="term" name="term"/>
+                        <label for="term">Eu concordo em receber emails sobre coisas legais no Labbedit</label>
+                    </div>
+                </StyledTerms>
+                <StyledDivButtons>
+                    {isLoading ? <StyledLoading></StyledLoading> : <StyledButton>Cadastrar</StyledButton>}
+                </StyledDivButtons>
+            </StyledForm>
+        </StyledPage>
     );
 }
 

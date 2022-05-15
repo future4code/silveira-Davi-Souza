@@ -5,11 +5,12 @@ import { GlobalStyle, StyledBodyPage } from "./Styled";
 const App = () => {
   const token = localStorage.getItem("token");
   const [ rightButtonText, setRightButtonText ] = useState( token ? "Logout" : "Entrar");
+  const [ button, setButton ] = useState(false);
 
   return (
     <StyledBodyPage>
       <GlobalStyle/>
-      <Router rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
+      <Router button={button} setButton={setButton} rightButtonText={rightButtonText} setRightButtonText={setRightButtonText}/>
     </StyledBodyPage>
   );
 }
