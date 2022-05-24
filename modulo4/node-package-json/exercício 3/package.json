@@ -1,0 +1,16 @@
+{
+  "name": "aula-node-exercicio3",
+  "version": "1.0.0",
+  "description": "modulo4 primeiro exercício",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\u001b[A\u001b[B"
+  },
+  "author": "Davi Souza",
+  "license": "ISC"
+}
