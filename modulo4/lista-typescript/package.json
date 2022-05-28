@@ -14,7 +14,8 @@
     "start7": "tsc && node ./build/exercicio7.js",
     "start8": "tsc && node ./build/exercicio8.js",
     "start9": "tsc && node ./build/exercicio9.js",
-    "start10": "tsc && node ./build/exercicio10.js"
+    "start10": "tsc && node ./build/exercicio10.js",
+    "start11": "tsc && node ./build/exercicio11.js"
   },
   "keywords": [],
   "author": "",
