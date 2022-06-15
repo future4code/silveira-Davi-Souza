@@ -1,0 +1,12 @@
+GET http://localhost:3003/endereco/05424150
+
+###
+POST https://localhost:3003/user
+Content-Type: application/json
+
+{
+    "cep": "05424150",
+    "numero": 327,
+    "complemento": "casa"
+}
+###
