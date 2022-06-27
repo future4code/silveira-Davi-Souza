@@ -1,0 +1,32 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "email": "jose@hotmail.com" ,
+   "password": "123456"
+}
+
+###
+
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "jose@hotmail.com" ,
+   "password": "123456"
+}
+
+###
+
+@token = {{signup.response.body.newUser.token}}
+
+GET http://localhost:3003/user/profile/{{token}}
+Content-Type: application/json
+
+{
+   "name": "Harry Osbourne" 
+}
