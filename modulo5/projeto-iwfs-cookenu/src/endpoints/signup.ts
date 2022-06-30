@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { UserDB } from "../data/UserDB";
 import { User } from "../entities/User";
 import { Authenticator } from "../services/Authenticator";
-import { GenerateId } from "../services/generateId";
+import { GenerateId } from "../services/GenerateId";
 import { HashManager } from "../services/HashMaganer";
 
-export const signup =async (req: Request, res: Response): Promise<any> => {
+const signup =async (req: Request, res: Response): Promise<any> => {
     try {
         const { name, email, password } = req.body;
 
@@ -36,3 +36,5 @@ export const signup =async (req: Request, res: Response): Promise<any> => {
         res.status(400).send(error.message);
     };
 };
+
+export default signup;

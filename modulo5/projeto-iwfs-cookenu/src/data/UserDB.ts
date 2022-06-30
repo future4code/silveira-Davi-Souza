@@ -6,10 +6,10 @@ export class UserDB {
         try {
             await connection("COOKENU_USERS")
                 .insert({
-                    id: user.getId(),
-                    name: user.getName(),
-                    email: user.getEmail(),
-                    password: user.getPassword()
+                    "id": user.getId(),
+                    "name": user.getName(),
+                    "email": user.getEmail(),
+                    "password": user.getPassword()
                 });
         } 
         catch (error) {

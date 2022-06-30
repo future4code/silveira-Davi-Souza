@@ -22,7 +22,7 @@ export class User {
         return this.password;
     };
 
-    static toUserMode(data: any): User{
+    static toUserMode(data: any): User {
         return new User(data.id, data.name, data.email, data.password);
     };
 };
