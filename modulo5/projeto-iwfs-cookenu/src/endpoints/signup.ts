@@ -5,7 +5,7 @@ import { Authenticator } from "../services/Authenticator";
 import { GenerateId } from "../services/GenerateId";
 import { HashManager } from "../services/HashMaganer";
 
-const signup =async (req: Request, res: Response): Promise<any> => {
+const signup = async (req: Request, res: Response): Promise<any> => {
     try {
         const { name, email, password } = req.body;
 

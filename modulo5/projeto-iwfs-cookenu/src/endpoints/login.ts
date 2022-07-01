@@ -3,7 +3,7 @@ import { UserDB } from "../data/UserDB";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashMaganer";
 
-const login =async (req: Request, res: Response): Promise<any> => {
+const login = async (req: Request, res: Response): Promise<any> => {
     try {
         const { email, password } = req.body;
 

@@ -19,13 +19,39 @@ class RecipeDB {
     };
 
     public async getRecipeDB (id: string): Promise<Recipe> {
-        const result = await connection("COOKENU_RECIPES")
-            .select("*")
-            .where({id});
+        try{
+            const result = await connection("COOKENU_RECIPES")
+                .select("*")
+                .where({id});
 
-        return result[0] && Recipe.toRecipeMode(result[0]);
+            return result[0] && Recipe.toRecipeMode(result[0]);
+        }
+        catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        };
     };
 
+    public async getUserFeed (id: string): Promise<any[]> {
+        try{
+            const result = await connection
+                .raw(`
+                    SELECT rc.id, rc.title, rc.description, rc.creation_date as createdAt, rc.user_id as userId, u.name as userName 
+                    FROM COOKENU_RECIPES rc 
+                    INNER JOIN COOKENU_FOLLOWERS f ON f.creator_id = rc.user_id
+                    INNER JOIN COOKENU_USERS u ON u.id = rc.user_id
+                    WHERE f.follower_id = "${id}";
+                `);
+
+            if(result[0].length < 1){
+                throw new Error("Usuário não está seguindo ninguém.");
+            };
+
+            return result[0];
+        }
+        catch (error) {
+            throw new Error(error.sqlMessage || error.message);
+        };
+    };
 };
 
 export default RecipeDB;

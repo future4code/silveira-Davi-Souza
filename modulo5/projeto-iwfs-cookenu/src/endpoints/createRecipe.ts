@@ -5,7 +5,7 @@ import Recipe from "../entities/Recipe";
 import { Authenticator } from "../services/Authenticator";
 import { GenerateId } from "../services/GenerateId";
 
-const createRecipe = async ( req:Request, res: Response ) => {
+const createRecipe = async ( req:Request, res: Response ): Promise<any> => {
     try {
         const token = req.headers.authorization as string;
         const { title, description } = req.body;

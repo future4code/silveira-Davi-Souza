@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { UserDB } from "../data/UserDB";
 import { Authenticator } from "../services/Authenticator";
 
-const userProfile = async (req: Request, res: Response) => {
+const userProfile = async (req: Request, res: Response): Promise<any> => {
     try {
         const token = req.headers.authorization as string;
 

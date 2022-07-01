@@ -3,7 +3,7 @@ import RecipeDB from "../data/RecipeDB";
 import { UserDB } from "../data/UserDB";
 import { Authenticator } from "../services/Authenticator";
 
-const getRecipe = async (req: Request, res: Response) => {
+const getRecipe = async (req: Request, res: Response): Promise<any> => {
     try {
         const token = req.headers.authorization as string;
         const recipeId = req.params.id;
