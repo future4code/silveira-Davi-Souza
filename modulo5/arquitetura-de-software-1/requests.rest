@@ -1,0 +1,29 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+	"name": "Michael Scott",
+	"email": "michael@dundermifflin.com",
+	"password": "theboss",
+	"role": "ADMIN"
+}
+
+###
+# @name login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+	"email": "michael@dundermifflin.com",
+	"password": "theboss"
+}
+
+###
+GET http://localhost:3003/all
+Authorization: {{token}}
+
+###
+@token = {{login.response.body.token}}
+@id = c0f381ee-fbb3-4ae5-8950-2d29a6639c29
+DELETE http://localhost:3003/{{id}}
+Authorization: {{token}}
