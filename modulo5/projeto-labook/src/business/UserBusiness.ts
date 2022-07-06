@@ -1,11 +1,17 @@
 import UserData from "../data/UserData";
-import { hash } from "../services/hashManager";
-import { generateId } from "../services/idGenerator";
-import { signupInputDTO } from "../types/SignupInputDTO";
+import User from "../model/User";
+import authenticator from "../services/authenticator";
+import hashManager from "../services/hashManager";
+import idGenerator from "../services/idGenerator";
+import { loginInputDTO } from "../types/loginInputDTO";
+import { signupInputDTO } from "../types/signupInputDTO";
 
 class UserBusiness {
     constructor(
-        private userData: UserData
+        private userData: UserData,
+        private idGenerator: idGenerator,
+        private hashManager: hashManager,
+        private authenticator: authenticator
     ){};
 
     public signup = async (user: signupInputDTO) => {
@@ -15,16 +21,46 @@ class UserBusiness {
             throw new Error("Invalid Inputs");
         };
 
-        const isRegistered = this.userData.findByEmail(email);
+        const isRegistered = await this.userData.findByEmail( email );
 
         if(isRegistered){
             throw new Error("User already exists");
         };
 
-        const id = generateId();
-        const hashPassword = await hash(password);
+        const id = this.idGenerator.generateId();
+        const hashPassword = await this.hashManager.hash( password );
 
+        const newUser = new User( id, name, email, hashPassword );
         
+        await this.userData.insert(newUser);
+
+        const token = this.authenticator.generateToken({ id, email });
+
+        return token;
+    };
+
+    public login = async (user: loginInputDTO) => {
+        const { email, password } = user;
+
+        if( !email || !password ){
+            throw new Error("Invalid Inputs");
+        };
+
+        const isRegistered = await this.userData.findByEmail( email );
+
+        if(!isRegistered){
+            throw new Error("User is not registered");
+        };
+
+        const correctPassword = await this.hashManager.compare( password, isRegistered.getPassword() );
+
+        if(!correctPassword){
+            throw new Error("Incorrect password");
+        };
+
+        const token = this.authenticator.generateToken( { id: isRegistered.getId(), email } );
+
+        return token;
     };
 };
 

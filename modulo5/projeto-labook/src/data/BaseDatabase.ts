@@ -3,7 +3,7 @@ import knex from "knex";
 
 dotenv.config();
 
-class BaseDatabase {
+abstract class BaseDatabase {
     protected connection = knex({
         client: 'mysql',
         connection: {
