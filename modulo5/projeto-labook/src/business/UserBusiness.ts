@@ -1,17 +1,17 @@
 import UserData from "../data/UserData";
 import User from "../model/User";
-import authenticator from "../services/authenticator";
-import hashManager from "../services/hashManager";
-import idGenerator from "../services/idGenerator";
+import Authenticator from "../services/Authenticator";
+import HashManager from "../services/HashManager";
+import IdGenerator from "../services/IdGenerator";
 import { loginInputDTO } from "../types/loginInputDTO";
 import { signupInputDTO } from "../types/signupInputDTO";
 
 class UserBusiness {
     constructor(
         private userData: UserData,
-        private idGenerator: idGenerator,
-        private hashManager: hashManager,
-        private authenticator: authenticator
+        private idGenerator: IdGenerator,
+        private hashManager: HashManager,
+        private authenticator: Authenticator
     ){};
 
     public signup = async (user: signupInputDTO) => {

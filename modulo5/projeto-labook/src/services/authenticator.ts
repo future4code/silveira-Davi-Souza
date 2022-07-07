@@ -5,7 +5,7 @@ export type AuthenticationData = {
    email: string
 };
 
-class authenticator {
+class Authenticator {
    generateToken( payload: AuthenticationData ): string {
       return jwt.sign(
          payload,
@@ -24,4 +24,4 @@ class authenticator {
    };
 };
 
-export default authenticator;
+export default Authenticator;
