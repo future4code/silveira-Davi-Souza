@@ -1,0 +1,33 @@
+# @name signup
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+   "email": "ramiro@hotmail.com" ,
+   "password": "123456789",
+   "role": "admin"
+}
+
+###
+
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "ramiro@hotmail.com" ,
+   "password": "123456789"
+}
+
+###
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/user/profile/{{token}}
+Content-Type: application/json
+
+{
+   "email": "ramiro@hotmail.com" 
+}
