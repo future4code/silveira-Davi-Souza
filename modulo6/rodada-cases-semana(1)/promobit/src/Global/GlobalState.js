@@ -6,14 +6,22 @@ import { GlobalStateContext } from './GlobalStateContext'
 function GlobalState (props) {
     const [ popular, setPopular ] = useState([]);
     const [ movie, setMovie ] = useState([]);
+    const [ page, setPage ] = useState(1);
+    const [ genre, setGenre ] = useState([]);
+    const [ genreId, setGenreId ] = useState([]);
+    const [ movieId, setMovieId ] = useState(0);
 
     useEffect(() => {
         getPopular();
-        getMovie();
-    },[]);
+        getGenre();
+    },[page, genreId]);
+
+    useEffect( () => {
+        getMovieById();
+    },[movieId]);
 
     const getPopular = () => {
-        axios.get(baserUrl("/movie/popular", "&language=pt-BR&page=1"), headers)
+        axios.get(baserUrl("/movie/popular", `&language=pt-BR&page=${page}`), headers)
             .then(res => {
                 setPopular(res.data.results);
             })
@@ -22,13 +30,40 @@ function GlobalState (props) {
             });
     };
 
-    const getMovie = () => {
-        // axios.get()
+    const getGenre = () => {
+        axios.get(baserUrl("/genre/movie/list", `&language=pt-BR`), headers)
+        .then(res => {
+            setGenre(res.data.genres);
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
+    };
+
+    const getMovieById = () => {
+        axios.get(baserUrl(`/movie/${movieId}`, `&language=pt-BR&genreId=28`), headers)
+        .then(res => {
+            console.log("movie", res.data)
+            setMovie(res.data);
+        })
+        .catch(error => {
+            console.log(error.message);
+        });
     };
 
     const data = {
         popular,
-        movie
+        setPopular,
+        movie,
+        setMovie,
+        page,
+        setPage,
+        genre,
+        setGenre,
+        genreId,
+        setGenreId,
+        movieId,
+        setMovieId
     };
 
     return (
