@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GlobalStateContext } from "../../Global/GlobalStateContext";
+import { StyledButton, StyledContainterButtons, StyledDivButtons, StyledMain, StyledText, StyledTxt } from "./styled";
 
 const Menu = () => {
     const { data } = useContext(GlobalStateContext);
     const { genre, setGenreId, genreId } = data;
+    const [ nameButton, setNameButton ] = useState("button");
 
     const setMovieGenre = (id) => {
+        nameButton == "button" ? setNameButton("activeButton") : setNameButton("button");
+
         let aux = [];
         if(genre.length == 0){
             setGenreId([...genreId, id]);
@@ -26,14 +30,24 @@ const Menu = () => {
 
     const genresButtons = genre && genre.map( movieGenre  => {
         return(
-            <button key={movieGenre.id} onClick={() => setMovieGenre(movieGenre.id)}>{movieGenre.name}</button>
+            <button className={nameButton} key={movieGenre.id} onClick={() => setMovieGenre(movieGenre.id)}>{movieGenre.name}</button>
         );
     });
 
     return(
-        <div>
-            {genresButtons ? genresButtons : <p>error</p>}
-        </div>
+        <StyledMain>
+            <StyledText>
+                <h1>Milhões de filmes, séries e pessoas para descobrir. Explore já</h1>
+            </StyledText>
+            <StyledDivButtons>
+                <StyledTxt>
+                    <p>FILTRE POR:</p>
+                </StyledTxt>
+                <StyledContainterButtons>
+                    {genresButtons ? genresButtons : <p>error</p>}
+                </StyledContainterButtons>
+            </StyledDivButtons>
+        </StyledMain>
     );
 };
 

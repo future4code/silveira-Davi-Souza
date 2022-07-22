@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import { GlobalStateContext } from "../../Global/GlobalStateContext";
 import Movie from "../../Components/Movie/Movie";
 import Menu from "../../Components/Menu/Menu";
+import { StyledContainerBtnPages, StyledContainerMovies, StyledDivPages, StyledMain } from "./styled";
 
 const Feed = () => {
     const { data } = useContext(GlobalStateContext)
-    const { popular, page, setPage, genreId } = data;
+    const { popular, page, setPage, genreId, totalPage } = data;
 
     const movies = popular && popular.filter( (movie) => {
         if(genreId.length == 0){
@@ -33,13 +34,22 @@ const Feed = () => {
     return (
         <div>
             <Menu/>
-            {movies ? movies : <p>loading</p>}
-            {page === 1 ? <></> : <button onClick={() => changePage((page - 1))}>{page - 1}</button>}
-            <button onClick={() => changePage((page + 1))}>{page + 1}</button>
-            <button onClick={() => changePage((page + 2))}>{page + 2}</button>
-            <button onClick={() => changePage((page + 3))}>{page + 3}</button>
-            <button onClick={() => changePage((page + 4))}>{page + 4}</button>
-            <button onClick={() => changePage((page + 5))}>{page + 5}</button>
+            <StyledMain>
+                <StyledContainerMovies>
+                    {movies ? movies : <p>loading</p>}
+                </StyledContainerMovies>
+                <StyledContainerBtnPages>
+                    <StyledDivPages>
+                        {page === 1 ? <></> : <button className="btn" onClick={() => changePage((page - 1))}>{page - 1}</button>}
+                        <button className="btn" onClick={() => changePage((page + 1))}>{page + 1}</button>
+                        <button className="btn" onClick={() => changePage((page + 2))}>{page + 2}</button>
+                        <button className="btn" onClick={() => changePage((page + 3))}>{page + 3}</button>
+                        <button className="btn" onClick={() => changePage((page + 4))}>{page + 4}</button>
+                        <button className="btn" onClick={() => changePage((page + 5))}>{page + 5}</button>
+                        <button className="btn" onClick={() => changePage((totalPage))}>Última</button>
+                    </StyledDivPages>
+                </StyledContainerBtnPages>
+            </StyledMain>    
         </div>
     );
 };  

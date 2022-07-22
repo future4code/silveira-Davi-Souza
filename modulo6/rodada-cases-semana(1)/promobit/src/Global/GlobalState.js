@@ -10,6 +10,7 @@ function GlobalState (props) {
     const [ genre, setGenre ] = useState([]);
     const [ genreId, setGenreId ] = useState([]);
     const [ movieId, setMovieId ] = useState(0);
+    const [ totalPages, setTotalPages ] = useState(0);
 
     useEffect(() => {
         getPopular();
@@ -23,6 +24,8 @@ function GlobalState (props) {
     const getPopular = () => {
         axios.get(baserUrl("/movie/popular", `&language=pt-BR&page=${page}`), headers)
             .then(res => {
+                console.log(res.data)
+                setTotalPages(res.data.total_pages);
                 setPopular(res.data.results);
             })
             .catch(error => {
@@ -63,7 +66,8 @@ function GlobalState (props) {
         genreId,
         setGenreId,
         movieId,
-        setMovieId
+        setMovieId,
+        totalPages
     };
 
     return (
