@@ -1,15 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { GlobalStateContext } from "../../Global/GlobalStateContext";
-import { StyledButton, StyledContainterButtons, StyledDivButtons, StyledMain, StyledText, StyledTxt } from "./styled";
+import { StyledContainterButtons, StyledDivButtons, StyledMain, StyledText, StyledTxt } from "./styled";
 
 const Menu = () => {
     const { data } = useContext(GlobalStateContext);
     const { genre, setGenreId, genreId } = data;
-    const [ nameButton, setNameButton ] = useState("button");
 
     const setMovieGenre = (id) => {
-        nameButton == "button" ? setNameButton("activeButton") : setNameButton("button");
-
         let aux = [];
         if(genre.length == 0){
             setGenreId([...genreId, id]);
@@ -28,10 +25,17 @@ const Menu = () => {
         };
     };
 
-    const genresButtons = genre && genre.map( movieGenre  => {
-        return(
-            <button className={nameButton} key={movieGenre.id} onClick={() => setMovieGenre(movieGenre.id)}>{movieGenre.name}</button>
-        );
+    const genresButtons = genre && genre.map( (movieGenre)  => {
+        if(genreId.includes(movieGenre.id)){
+            return(
+                <button className="activeButton" key={movieGenre.id} onClick={() => setMovieGenre(movieGenre.id)}>{movieGenre.name}</button>
+            );
+        } 
+        else{
+            return(
+                <button className="button" key={movieGenre.id} onClick={() => setMovieGenre(movieGenre.id)}>{movieGenre.name}</button>
+            );
+        };
     });
 
     return(

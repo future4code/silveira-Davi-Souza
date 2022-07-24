@@ -36,11 +36,12 @@ const Feed = () => {
             <Menu/>
             <StyledMain>
                 <StyledContainerMovies>
-                    {movies ? movies : <p>loading</p>}
+                    {movies.length > 0 ? movies : <p>Não encontrado</p>}
                 </StyledContainerMovies>
                 <StyledContainerBtnPages>
                     <StyledDivPages>
-                        {page === 1 ? <></> : <button className="btn" onClick={() => changePage((page - 1))}>{page - 1}</button>}
+                        {page === 1 ? <></> : <button className="btn" onClick={() => changePage(1)}>Inicio</button>}
+                        <button className="btn" onClick={() => changePage((page))}>{page}</button>
                         <button className="btn" onClick={() => changePage((page + 1))}>{page + 1}</button>
                         <button className="btn" onClick={() => changePage((page + 2))}>{page + 2}</button>
                         <button className="btn" onClick={() => changePage((page + 3))}>{page + 3}</button>

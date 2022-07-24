@@ -11,7 +11,7 @@ const Movie = ({movie}) => {
 
     const changeToDetails = (id) => {
         setMovieId(id);
-        goToDetails(navigate, `/details`);
+        goToDetails(navigate, `/details/${id}`);
     };
 
     return (

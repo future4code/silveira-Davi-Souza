@@ -1,11 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { goToFeed } from "../../Routes/Coordinator";
 import { StyledDiv, StyledHeader } from "./styed";
 
 const Header = () => {
     return(
         <StyledHeader>
             <StyledDiv>
-                <p>TMDB</p>
+                <div>
+                    <p>TMDB</p>
+                </div>
             </StyledDiv>
         </StyledHeader>
     );
