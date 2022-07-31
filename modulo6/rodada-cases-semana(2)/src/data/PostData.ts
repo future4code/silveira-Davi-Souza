@@ -52,18 +52,19 @@ class PostData extends BaseDatabase{
         try {
             let tag;
             let tags;
+            let result = [];
 
-            const result: responseFindPost[] = await this.connection(this.TABLE_NAME)
-            .select("*")
-            .where({ id: input })
-            .orWhere("name", "LIKE", input);
+            result = await this.connection(this.TABLE_NAME)
+                .select("*")
+                .where({ id: input })
+                .orWhere("name", "LIKE", input);
 
-            if(result.length === 0){
+            if(result.length == 0){
                 tag = await this.connection(this.TABLE_TAGS)
                     .select("*")
                     .where({name: input});
                 
-                const results: responseFindPost[] = await this.connection.raw(`
+                const results = await this.connection.raw(`
                     SELECT a.id, a.name, a.author_id FROM amaro_products as a
                     INNER JOIN products_tags as p 
                     WHERE "${tag[0].id}" = p.tags_id
@@ -73,13 +74,11 @@ class PostData extends BaseDatabase{
                 tags = await this.connection.raw(`
                     SELECT t.name FROM tags as t
                     INNER JOIN products_tags as p
-                    WHERE "${results[0].id}" = p.product_id
+                    WHERE "${results[0][0].id}" = p.product_id
                     AND p.tags_id = t.id;
                 `);
 
-                console.log("tags",tags[0])
-
-                return (results[0] && tags[0]) && Product.toProductMode(results[0], tags[0]);
+                return (results[0] && tags[0]) && Product.toProductMode(results[0][0], tags[0]);
             };
 
             tags = await this.connection.raw(`
