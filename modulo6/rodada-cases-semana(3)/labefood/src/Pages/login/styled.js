@@ -11,7 +11,7 @@ export const Main = styled.div `
     width: 100%;
 
     p{
-        font-size: 2rem;
+        font-size: 1rem;
     }
 `
 
