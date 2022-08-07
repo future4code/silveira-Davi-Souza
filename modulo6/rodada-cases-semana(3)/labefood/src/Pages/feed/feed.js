@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CardRestaurant from "../../Components/CardRestaurant/CardRestaurant";
 import Header from "../../Components/Header/Header";
+import Menu from "../../Components/Menu/Menu";
 import { BASE_URL } from "../../Constants/url";
 import { useProtectedPage } from "../../Hooks/useProtectedPage";
-import { CardsRestaurants, Containerfeed, InputBox, Menu, MenuItem, Search } from "./styled";
+import { CardsRestaurants, Containerfeed, InputBox, MenuItem, MenuNav, Search } from "./styled";
 
 const Feed = () => {
     useProtectedPage();
@@ -102,7 +103,7 @@ const Feed = () => {
                     onChange={(event) => setInputText(event.target.value)}    
                 />
             </InputBox>
-            <Menu>
+            <MenuNav>
                 <MenuItem 
                     onClick={() => changeCategory("")}
                 >
@@ -121,10 +122,11 @@ const Feed = () => {
                         );
                     })
                 }
-            </Menu>
+            </MenuNav>
             <CardsRestaurants>
                 {filterRestaurant}
             </CardsRestaurants>
+            <Menu page={"home"}/>
         </Containerfeed>
     );
 };

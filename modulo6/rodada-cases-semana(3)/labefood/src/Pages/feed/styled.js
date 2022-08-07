@@ -22,7 +22,7 @@ export const Search = styled.input `
     border: solid 1px gray;
 `
 
-export const Menu = styled.nav `
+export const MenuNav = styled.nav `
     height: 2.625rem;
     display: flex;
     align-items: center;

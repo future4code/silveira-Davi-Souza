@@ -21,3 +21,11 @@ export const goToSignupAdress = (navigate) => {
 export const goToFeed = (navigate) => {
     navigate("/");
 };
+
+export const goToCart = (navigate) => {
+    navigate("/cart");
+};
+
+export const goToProfile = (navigate) => {
+    navigate("/profile");
+};
