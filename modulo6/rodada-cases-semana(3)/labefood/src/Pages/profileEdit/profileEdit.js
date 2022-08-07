@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "../../Components/Header/Header";
 
-const Profile = () => {
+const ProfileEdit = () => {
     return (
         <div>
-            <Header back/>
+            <Header title={"Endereço"} back/>
         </div>
     );
 };
 
-export default Profile;
+export default ProfileEdit;

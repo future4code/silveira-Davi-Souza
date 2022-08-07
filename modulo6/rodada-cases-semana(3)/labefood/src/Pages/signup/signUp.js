@@ -8,6 +8,7 @@ import axios from "axios"
 import { BASE_URL } from "../../Constants/url";
 import { useNavigate } from "react-router-dom";
 import { goToSignupAdress } from "../../Routes/coordinator";
+import Header from "../../Components/Header/Header";
 
 const Signup = () => {
     const [showPassword, setShowPassword]   = useState(true);
@@ -66,6 +67,7 @@ const Signup = () => {
 
     return (
         <Main>
+            <Header back/>
             <p>Cadastrar</p>
             <Form onSubmit={onSubmitForm}>
                 <InputMaterial

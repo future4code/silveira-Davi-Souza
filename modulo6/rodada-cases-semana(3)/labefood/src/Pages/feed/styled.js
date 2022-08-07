@@ -39,7 +39,7 @@ export const MenuItem = styled.button `
     line-height: normal;
     letter-spacing: -0.39px;
     text-align: center;
-    color: ${ p => p.select ? "black" : "red"};
+    color: ${ p => p.select ? "red" : "black"};
     background-color: transparent;
     border: none;
     outline: none;

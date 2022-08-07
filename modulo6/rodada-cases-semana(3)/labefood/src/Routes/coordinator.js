@@ -1,9 +1,17 @@
 export const goToLogin = (navigate) => {
-    navigate("/");
+    navigate("/login");
 };
 
 export const goToSignup = (navigate) => {
     navigate("/signup");
+};
+
+export const goToBack = (navigate) => {
+    navigate(-1);
+};
+
+export const goToRestaurant = (navigate, id) => {
+    navigate(`/feed/${id}`);
 };
 
 export const goToSignupAdress = (navigate) => {
@@ -11,5 +19,5 @@ export const goToSignupAdress = (navigate) => {
 };
 
 export const goToFeed = (navigate) => {
-    navigate("/feed");
+    navigate("/");
 };

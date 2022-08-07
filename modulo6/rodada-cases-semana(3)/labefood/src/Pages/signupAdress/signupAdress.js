@@ -5,6 +5,7 @@ import { Form, InputMaterial, Main, StyledButton } from "./styled";
 import { BASE_URL } from "../../Constants/url";
 import { useNavigate } from "react-router-dom";
 import { goToFeed } from "../../Routes/coordinator";
+import Header from "../../Components/Header/Header";
 
 const SignupAdress = () => {
 
@@ -45,6 +46,7 @@ const SignupAdress = () => {
 
     return (
         <Main>
+            <Header back/>
             <p className="title">SignupAdress</p>
             <Form onSubmit={onSubmitForm}>
                 <InputMaterial

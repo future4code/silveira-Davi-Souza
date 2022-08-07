@@ -43,7 +43,15 @@ const Feed = () => {
             arrayAux.push(res.category);
         });
 
-        setCategory([... new Set(arrayAux)]);
+        const takeOutRepeat = [... new Set(arrayAux)];
+
+        const changeObjArr = [];
+
+        takeOutRepeat.map(category => {
+            changeObjArr.push({category, select:false});
+        });
+
+        setCategory(changeObjArr);
     };
 
     console.log("cat",valueCategory);
@@ -64,9 +72,30 @@ const Feed = () => {
             );
         })
 
+        const changeCategory = (input) => {
+            setValueCategory(input);
+
+            const result = category.map(cat => {
+                if(cat.category === input){
+                    return{
+                        ...cat,
+                        select: true
+                    }
+                }
+                else {
+                    return{
+                        ...cat,
+                        select: false
+                    }
+                }
+            });
+
+            setCategory(result);
+        };
+
     return (
         <Containerfeed>
-            <Header title={"Ifuture"}/>
+            <Header title={"Ifuture"} back={false}/>
             <InputBox>
                 <Search
                     value={inputText}
@@ -75,8 +104,7 @@ const Feed = () => {
             </InputBox>
             <Menu>
                 <MenuItem 
-                    select={false}
-                    onClick={() => setValueCategory("")}
+                    onClick={() => changeCategory("")}
                 >
                     Todos
                 </MenuItem>
@@ -85,10 +113,10 @@ const Feed = () => {
                         return (
                             <MenuItem 
                                 key={i}
-                                select={false}
-                                onClick={() => setValueCategory(cat)}
+                                select={cat.select}
+                                onClick={() => changeCategory(cat.category)}
                             >
-                                {cat}
+                                {cat.category}
                             </MenuItem>
                         );
                     })
