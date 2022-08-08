@@ -61,7 +61,11 @@ const Restaurant = () => {
                                     })
                                     .map(product => {
                                         return( 
-                                            <CardProduct product={product} key={product.id}/>
+                                            <CardProduct 
+                                                product={product} 
+                                                key={product.id}
+                                                restaurant={restaurant}
+                                            />
                                         )
                                     })
                                 }

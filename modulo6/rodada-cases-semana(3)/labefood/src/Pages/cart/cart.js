@@ -1,31 +1,48 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import CardProduct from "../../Components/CardProduct/CardProduct";
+import Menu from "../../Components/Menu/Menu";
 import { BASE_URL } from "../../Constants/url";
+import { useGlobal } from "../../Context/Global/GlobalStateContext";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { CartConfig, CartInfo, EmptyCart, Form, Freight, InfoProfile, InfoRestaurant, Main, MainCart, Payment, Total } from "./styled";
 
 const Cart = () => {
     const profile = useRequestData({}, `${BASE_URL}/profile`);
-    const [ payment, setPayment ] = useState([]);
-    const [ paymentMethod, setPaymentMethod ] = useState({
-        "money": false,
-        "credit": false
-    });
+
+    const [ payment, setPayment ]       = useState("");
+    const [ fullPrice, setFullPrice ]   = useState(0);
+    const [ paymentMethod ]             = useState([ "money", "credit" ]);
+
+    const { state } = useGlobal();
+    const { cart, restaurant } = state;
 
     const onChangePayment = (event) => {
-        const newCheck = {...paymentMethod};
-        newCheck[event.target.name] = event.target.checked
-
-        const result = Object.keys(newCheck).filter(pay => {
-            if(newCheck[pay]){
-                return [pay, ...payment]
-            }
-        });
-
-        setPayment(result);
-        setPaymentMethod(newCheck);
+        setPayment(event.target.value);
     };
 
-    console.log(payment)
+    console.log(cart);
+
+    const totalPrice = () => {
+        const tprice = 0;
+       
+        for(const product of cart){
+            console.log("dentro da funcao",product)
+            tprice += product.price * product.quantity;
+        };
+
+        // cart.map( product => {
+        //     tprice += product.price * product.quantity;
+        // });
+
+        setFullPrice(tprice);
+    };
+
+    useEffect(() => {
+
+    }, []);
+
+    console.log(restaurant)
+    console.log(fullPrice)
 
     return (
         <Main>
@@ -43,36 +60,48 @@ const Cart = () => {
                     <p>30 - 45 min</p>
                 </InfoRestaurant>
                 <CartInfo>
-                    <EmptyCart>Carrinho Vazio</EmptyCart>
+                    {
+                        cart && cart.length > 0 ? cart.map(data => {
+                            return (
+                                <CardProduct
+                                    product={data}
+                                    key={data.id}
+                                    restaurant={restaurant}
+                                />
+                            )
+                        }) 
+                        : 
+                        <EmptyCart>Carrinho Vazio</EmptyCart>
+                    }
                 </CartInfo>
                 <Payment>
                     <Freight>Frete {new Intl.NumberFormat("pt-BR", {
                         style: "currency",
                         currency: "BRL"
-                    }).format(6)}</Freight>
+                    }).format(restaurant.shipping ? restaurant.shipping : 0)}</Freight>
                     <Total>
                         <p>Subtotal</p>
                         <p>{new Intl.NumberFormat("pt-BR", {
                         style: "currency",
                         currency: "BRL"
-                    }).format(0)}</p>
+                    }).format(fullPrice)}</p>
                     </Total>
                     <h1>Forma de Pagamento</h1>
                     <hr/>
                     <Form>
                         {
-                            Object.keys(paymentMethod).map(key => {
-                                const checked = paymentMethod[key]
+                            paymentMethod.map(key => {
                                 return (
                                     <div key={key}>
                                         <input 
-                                            checked={checked}
-                                            name={key}
+                                            checked={payment === key}
+                                            name={"paymentMethod"}
                                             id={key}
-                                            type="checkbox"
+                                            type="radio"
                                             onChange={onChangePayment}
+                                            value={key}
                                         />
-                                        <label>{key}</label>
+                                        <label htmlFor={key}>{key}</label>
                                     </div>
                                 )
                             })
@@ -81,6 +110,7 @@ const Cart = () => {
                     </Form>
                 </Payment>
             </CartConfig>
+            <Menu page={"cart"}/>
         </Main>
     );
 };

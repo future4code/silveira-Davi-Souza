@@ -21,10 +21,13 @@ export const QuantityProduct = styled.div `
     border: solid 1px red;
     width: 2.063rem;
     height: 2.063rem;
+    border-radius:0 8px 0 8px ;
+    color: red; 
 `
 
 export const BoxNameQuantity = styled.div `
-
+    display: flex;
+    justify-content: space-between;
 `
 
 export const NameProduct = styled.h3 `
@@ -36,14 +39,14 @@ export const NameProduct = styled.h3 `
     letter-spacing: -0.39px;
     text-align: left;
     color: red;
-    padding-bottom: 0.25rem;
+    padding: 1rem 0 0.25rem 0;
 `
 
 export const BoxInform = styled.div `
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding: 1rem 0 0 1rem;
+    padding: 0 0 0 1rem;
     flex-grow: 1;
 `
 
@@ -69,11 +72,16 @@ export const InformPrice = styled.p `
 
 `
 
-export const IformButton = styled.button `
+export const IformAddButton = styled.button `
     width: 5.625rem;
     height: 1.938rem;
     border-radius: 8px 0 8px 0;
     background-color: white;
     outline: 0;
     border: 1px black solid;
+`
+
+export const IformRemoveButton = styled(IformAddButton) `
+    border: 1px red solid;
+    color: red;
 `

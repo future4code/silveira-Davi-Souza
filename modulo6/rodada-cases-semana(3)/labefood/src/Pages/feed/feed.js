@@ -24,7 +24,6 @@ const Feed = () => {
             }
         })
             .then( res => {
-                console.log(res.data)
                 setRestaurants(res.data.restaurants);
                 filterCategory(res.data.restaurants);
             })
@@ -54,8 +53,6 @@ const Feed = () => {
 
         setCategory(changeObjArr);
     };
-
-    console.log("cat",valueCategory);
 
     const filterRestaurant = restaurants && restaurants
         .filter(rest => {

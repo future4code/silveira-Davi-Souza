@@ -8,7 +8,7 @@ export const MenuContainer = styled.nav `
     height: 3.062rem;
     box-shadow: 0 -1px 3px 0 rgba(0,0,0,0.2), 0 -2px 1px -1px rgba(0,0,0,0.12), 0 -1px;
     position: fixed;
-    bottom: 0;
+    bottom: -1px;
     width: 100%;
     background-color: white;
 `
