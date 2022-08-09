@@ -5,9 +5,12 @@ import CardProduct from "../../Components/CardProduct/CardProduct";
 import CardRestaurantDetails from "../../Components/CardRestaurantDetails/CardRestaurantDetails";
 import Header from "../../Components/Header/Header";
 import { BASE_URL } from "../../Constants/url";
+import { useProtectedPage } from "../../Hooks/useProtectedPage";
 import { CardRestaurant, Category, ContainerRestaurant, SectionProductByCategory } from "./styled";
 
 const Restaurant = () => {
+    useProtectedPage();
+
     const { restaurantId } = useParams();
     const [ restaurant, setRestaurant ] = useState({});
     const [ categories, setCategories ] = useState([]); 

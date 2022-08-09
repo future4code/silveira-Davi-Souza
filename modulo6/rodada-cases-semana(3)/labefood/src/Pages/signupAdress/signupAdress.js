@@ -6,8 +6,10 @@ import { BASE_URL } from "../../Constants/url";
 import { useNavigate } from "react-router-dom";
 import { goToFeed } from "../../Routes/coordinator";
 import Header from "../../Components/Header/Header";
+import { useProtectedPage } from "../../Hooks/useProtectedPage";
 
 const SignupAdress = () => {
+    useProtectedPage();
 
     const {form, onChange, clean} = useForm({
         "street": "",

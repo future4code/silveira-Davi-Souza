@@ -40,3 +40,10 @@ export const DivPass = styled.div `
 export const InputMaterial = styled(TextField)`
     width: 100%;
 `
+
+export const StyledIcon = styled.div `
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 4rem;
+`;

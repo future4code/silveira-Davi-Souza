@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { DivPass, Form, InputMaterial, Main, StyledButton } from "./styled";
-import IconButton from '@mui/material/IconButton';
+import { DivPass, Form, InputMaterial, Main, StyledButton, StyledIcon } from "./styled";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import axios from "axios";
 import { BASE_URL } from "../../Constants/url";
-import { goToFeed } from "../../Routes/coordinator";
+import { goToFeed, goToSignup } from "../../Routes/coordinator";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Login = () => {
     const [email, setEmail]                 = useState("");
@@ -63,7 +63,7 @@ const Login = () => {
 
     return (
         <Main>
-            <p>Enter</p>
+            <p>Entrar</p>
             <Form onSubmit={onSubmitLogin}>
                 <InputMaterial 
                     error={checkErrEmail}
@@ -91,16 +91,13 @@ const Login = () => {
                         inputProps={{minLength: 6, title: "A senha deve conter no mínimo 6 caracteres"}}
                         required
                     />
-                    <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        edge="end"
-                    >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
+                    <StyledIcon onClick={handleClickShowPassword}>
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </StyledIcon>
                 </DivPass>
                 <StyledButton type="submit">Submit</StyledButton>
             </Form>
+            <Button onClick={() => goToSignup(navigate)}>Não possui cadastro clique aqui</Button>
         </Main>
     );
 };

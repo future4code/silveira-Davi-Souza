@@ -29,3 +29,11 @@ export const goToCart = (navigate) => {
 export const goToProfile = (navigate) => {
     navigate("/profile");
 };
+
+export const goToAddressEdit = (navigate) => {
+    navigate("/addressEdit");
+};
+
+export const goToProfileEdit = (navigate, id) => {
+    navigate(`/profile/${id}`);
+};

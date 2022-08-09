@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "../../Hooks/useForm";
-import { DivPass, Form, InputMaterial, Main, StyledButton } from "./styled";
+import { DivPass, Form, InputMaterial, Main, StyledButton, StyledIcon } from "./styled";
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
@@ -17,9 +17,6 @@ const Signup = () => {
     const [checkErrPass, setCheckErrPass]   = useState(false);
 
     const navigate = useNavigate();
-
-    const handleClickShowPassword = () => setShowPassword(!showPassword);
-    const handleClickShowCheckPassword = () => setShowCheckPassword(!showCheckPassword);
 
     const {form, onChange, clean} = useForm({
         "name": "",
@@ -66,89 +63,82 @@ const Signup = () => {
     };
 
     return (
-        <Main>
-            <Header back/>
-            <p>Cadastrar</p>
-            <Form onSubmit={onSubmitForm}>
-                <InputMaterial
-                    id="outlined-basic" 
-                    label="Name" 
-                    name="name"
-                    variant="outlined" 
-                    type="text"
-                    placeholder="Type your name"
-                    value={form.name}
-                    onChange={onChange}
-                    required
-                />
-                <InputMaterial
-                    id="outlined-basic" 
-                    label="Email" 
-                    name="email"
-                    variant="outlined" 
-                    type={"email"}
-                    value={form.email}
-                    placeholder="email@email.com"
-                    onChange={onChange}
-                    required
-                />
-                <InputMaterial
-                    id="outlined-basic" 
-                    label="CPF" 
-                    name="cpf"
-                    variant="outlined" 
-                    type={"text"}
-                    value={cpfMask(form.cpf)}
-                    placeholder="xxx.xxx.xxx-xx"
-                    onChange={onChange}
-                    required
-                />
-                <DivPass>
+        <>
+            <Header title={"Cadastrar"} back/>
+            <Main>
+                <Form onSubmit={onSubmitForm}>
                     <InputMaterial
                         id="outlined-basic" 
-                        label="Password" 
-                        name="password"
+                        label="Name" 
+                        name="name"
                         variant="outlined" 
-                        type={showPassword ? "password" : "text"}
-                        placeholder="Mínimo 6 caracteres"
+                        type="text"
+                        placeholder="Type your name"
+                        value={form.name}
                         onChange={onChange}
-                        value={form.password}
-                        inputProps={{minLength: 6, title: "A senha deve conter no mínimo 6 caracteres"}}
                         required
                     />
-                    <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        edge="end"
-                    >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                </DivPass>
-                <DivPass>
                     <InputMaterial
-                        error={checkErrPass}
-                        helperText={checkErrPass ? "Deve ser a mesma que a anterior" : ""}
                         id="outlined-basic" 
-                        label="Confirm" 
+                        label="Email" 
+                        name="email"
                         variant="outlined" 
-                        type={showCheckPassword ? "password" : "text"}
-                        placeholder="Mínimo 6 caracteres"
-                        onChange={(e) => setConfirmPass(e.target.value) }
-                        value={confirmPass}
-                        inputProps={{minLength: 6, title: "A senha deve conter no mínimo 6 caracteres"}}
+                        type={"email"}
+                        value={form.email}
+                        placeholder="email@email.com"
+                        onChange={onChange}
                         required
                     />
-                    <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowCheckPassword}
-                        edge="end"
-                    >
-                    {showCheckPassword ? <VisibilityOff /> : <Visibility />}
-                    </IconButton>
-                </DivPass>
-                <StyledButton type="submit">Register</StyledButton>
-            </Form>
-        </Main>
+                    <InputMaterial
+                        id="outlined-basic" 
+                        label="CPF" 
+                        name="cpf"
+                        variant="outlined" 
+                        type={"text"}
+                        value={cpfMask(form.cpf)}
+                        placeholder="xxx.xxx.xxx-xx"
+                        onChange={onChange}
+                        required
+                    />
+                    <DivPass>
+                        <InputMaterial
+                            id="outlined-basic" 
+                            label="Password" 
+                            name="password"
+                            variant="outlined" 
+                            type={showPassword ? "password" : "text"}
+                            placeholder="Mínimo 6 caracteres"
+                            onChange={onChange}
+                            value={form.password}
+                            inputProps={{minLength: 6, title: "A senha deve conter no mínimo 6 caracteres"}}
+                            required
+                        />
+                        <StyledIcon onClick={() => setShowPassword(!showPassword)}>
+                            {showPassword ? <VisibilityOff /> : <Visibility/>}
+                        </StyledIcon>
+                    </DivPass>
+                    <DivPass>
+                        <InputMaterial
+                            error={checkErrPass}
+                            helperText={checkErrPass ? "Deve ser a mesma que a anterior" : ""}
+                            id="outlined-basic" 
+                            label="Confirm" 
+                            variant="outlined" 
+                            type={showCheckPassword ? "password" : "text"}
+                            placeholder="Mínimo 6 caracteres"
+                            onChange={(e) => setConfirmPass(e.target.value) }
+                            value={confirmPass}
+                            inputProps={{minLength: 6, title: "A senha deve conter no mínimo 6 caracteres"}}
+                            required
+                        />
+                        <StyledIcon onClick={() => setShowCheckPassword(!showCheckPassword)}>
+                            {showCheckPassword ? <VisibilityOff /> : <Visibility/>}
+                        </StyledIcon>
+                    </DivPass>
+                    <StyledButton type="submit">Register</StyledButton>
+                </Form>
+            </Main>
+        </>
     );
 };
 
